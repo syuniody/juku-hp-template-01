@@ -1,0 +1,261 @@
+/* ===================================
+   Global Styles — CSS変数・タイポグラフィ・基本スタイル
+   Warm & Friendly Design (melabo01 inspired)
+   =================================== */
+
+/* === Google Fonts: 丸ゴシック === */
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap');
+
+:root {
+  /* === メインカラー（鮮やかなグリーン：パキッと信頼感） === */
+  --color-primary: #1A8C4E;
+  --color-primary-dark: #146B3A;
+  --color-primary-light: #DCEFD8;
+
+  /* === アクセントカラー（鮮やかなオレンジ：CTAに最適） === */
+  --color-accent: #EF8B2C;
+  --color-accent-dark: #D47520;
+  --color-accent-light: #FFF0DE;
+
+  /* === ベースカラー（クリーンな白ベース） === */
+  --color-white: #FFFFFF;
+  --color-bg: #FDFCF9;
+  --color-bg-alt: #F2EDE4;
+  --color-bg-primary: #DCEFD8;
+
+  /* === テキストカラー（しっかり濃い、読みやすい） === */
+  --color-text: #2C2825;
+  --color-text-light: #6B6560;
+  --color-text-muted: #9A9490;
+
+  /* === 英語ラベル === */
+  --color-label: #1A8C4E;
+  --label-opacity: 0.10;
+
+  /* === ボーダー・シャドウ === */
+  --color-border: #DDD7CE;
+  --color-shadow: rgba(44, 40, 37, 0.10);
+
+  /* === その他 === */
+  --color-error: #D93025;
+  --color-success: #1A8C4E;
+  --color-star: #F0A500;
+  --color-line: #06C755;
+  --color-accent-bg: rgba(239, 139, 44, 0.12);
+  --color-primary-bg: rgba(26, 140, 78, 0.10);
+
+  /* === フォント（丸ゴシック） === */
+  --font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic Pro', 'Rounded Mplus 1c', sans-serif;
+  --font-family-heading: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic Pro', sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 800;
+
+  /* === レイアウト === */
+  --max-width: 1200px;
+  --header-height: 80px;
+  --header-height-sp: 60px;
+  --section-padding: 80px;
+  --section-padding-sm: 56px;
+  --section-padding-sp: 48px;
+
+  /* === 角丸（より丸く、親しみやすく） === */
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  /* === シャドウ（柔らかく暖かい） === */
+  --shadow: 0 2px 12px rgba(62, 58, 53, 0.08);
+  --shadow-md: 0 4px 20px rgba(62, 58, 53, 0.10);
+  --shadow-lg: 0 8px 32px rgba(62, 58, 53, 0.12);
+  --shadow-hover: 0 6px 24px rgba(62, 58, 53, 0.15);
+}
+
+/* --- 基本スタイル --- */
+body {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.9;
+  font-size: 17px;
+  letter-spacing: 0.03em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- フォーカススタイル（アクセシビリティ） --- */
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* --- コンテナ --- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --- セクション --- */
+.section {
+  padding: var(--section-padding) 0;
+}
+
+.section--bg {
+  background-color: var(--color-bg-alt);
+}
+
+.section--bg-alt {
+  background-color: var(--color-bg-alt);
+}
+
+.section--primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.section--primary h1,
+.section--primary h2,
+.section--primary h3,
+.section--primary h4,
+.section--primary h5,
+.section--primary h6 {
+  color: var(--color-white);
+}
+
+.section--primary p {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* --- タイポグラフィ --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+p {
+  margin-bottom: 1.2em;
+  line-height: 2;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+strong {
+  font-weight: var(--font-weight-bold);
+}
+
+small {
+  font-size: 0.9375rem;
+  color: var(--color-text-light);
+}
+
+/* --- リンク --- */
+a {
+  color: var(--color-primary);
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+  opacity: 0.85;
+}
+
+/* --- ユーティリティ --- */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-primary { color: var(--color-primary); }
+.text-accent { color: var(--color-accent); }
+.text-muted { color: var(--color-text-muted); }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- レスポンシブ --- */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    line-height: 1.85;
+  }
+
+  h1 { font-size: 1.875rem; }
+  h2 { font-size: 1.625rem; }
+  h3 { font-size: 1.25rem; }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .section {
+    padding: var(--section-padding-sp) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  h1 { font-size: 1.625rem; }
+  h2 { font-size: 1.375rem; }
+  h3 { font-size: 1.125rem; }
+}
+
+/* === Utility Classes === */
+.mt-3 { margin-top: 12px; }
+.mt-4 { margin-top: 16px; }
+.mt-6 { margin-top: 24px; }
+.mt-8 { margin-top: 32px; }
+.text-center { text-align: center; }
+.text-muted { color: var(--color-text-light); font-size: 0.875rem; }
+
+/* Schedule Note (courses) */
+.schedule-note {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+}
+
+/* Contact Page Photo */
+.contact-photo {
+  margin-bottom: 32px;
+  text-align: center;
+}
+.contact-photo__image {
+  border-radius: var(--radius);
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Related Articles Title (blog) */
+.related-articles__title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}

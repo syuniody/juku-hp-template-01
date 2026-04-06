@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>塾長ブログ｜まなび学習塾</title>
+  <meta name="description" content="まなび学習塾の塾長ブログ。学習法・教室ニュース・受験情報を発信しています。">
+  <meta property="og:title" content="塾長ブログ｜まなび学習塾">
+  <meta property="og:description" content="学習法・教室ニュース・受験情報を発信しています。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/blog/">
+  <meta property="og:image" content="https://example.com/images/og-image.jpg">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/cta-bar.css">
+  <link rel="stylesheet" href="../css/pages/blog.css">
+</head>
+<body class="has-header has-cta-bar">
+
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header__inner">
+      <div class="header__logo"><a href="../"><img src="../images/logo.svg" alt="まなび学習塾" width="200" height="50"></a></div>
+      <nav class="header__nav" aria-label="メインナビゲーション">
+        <a href="../" class="header__nav-link">ホーム</a><a href="../courses/" class="header__nav-link">コース・料金</a>
+        <a href="../teachers/" class="header__nav-link">講師紹介</a><a href="../access/" class="header__nav-link">教室案内</a>
+        <a href="../blog/" class="header__nav-link">ブログ</a><a href="../contact/" class="header__nav-link">お問い合わせ</a>
+      </nav>
+      <div class="header__actions">
+        <a href="tel:06-1234-5678" class="header__phone"><span class="header__phone-icon">&#9742;</span>06-1234-5678</a>
+        <a href="../contact/" class="btn btn--primary header__cta">体験授業はこちら</a>
+      </div>
+      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false">
+        <span class="hamburger__line"></span><span class="hamburger__line"></span><span class="hamburger__line"></span>
+      </button>
+    </div>
+  </header>
+  <nav class="mobile-menu" aria-label="モバイルナビゲーション">
+    <a href="../" class="mobile-menu__link">ホーム</a><a href="../courses/" class="mobile-menu__link">コース・料金</a>
+    <a href="../teachers/" class="mobile-menu__link">講師紹介</a><a href="../access/" class="mobile-menu__link">教室案内</a>
+    <a href="../blog/" class="mobile-menu__link">ブログ</a><a href="../contact/" class="mobile-menu__link">お問い合わせ</a>
+    <a href="tel:06-1234-5678" class="mobile-menu__phone"><span>&#9742;</span> 06-1234-5678</a>
+    <a href="../contact/" class="btn btn--primary btn--block mobile-menu__cta">体験授業を申し込む</a>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <div class="container">
+        <p class="page-header__breadcrumb"><a href="../">ホーム</a> &gt; 塾長ブログ</p>
+        <h1 class="page-header__title">塾長ブログ</h1>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <!-- カテゴリフィルター -->
+        <div class="blog-categories">
+          <span class="blog-category is-active">すべて</span>
+          <span class="blog-category">学習法</span>
+          <span class="blog-category">教室ニュース</span>
+          <span class="blog-category">受験情報</span>
+        </div>
+
+        <!-- 記事一覧 -->
+        <div class="grid grid--3">
+          <!-- CMS_POSTS -->
+          <a href="article-01.html" class="card">
+            <img src="../images/blog-thumb-01.svg" alt="中間テスト対策" class="card__image" width="600" height="338">
+            <div class="card__body">
+              <span class="card__tag">学習法</span>
+              <h2 class="card__title">中間テスト対策！効率的な勉強法5選</h2>
+              <p class="card__text">中間テストが近づいてきました。効率的な勉強法をご紹介します。ポイントを押さえれば、短期間でも成績アップが期待できます。</p>
+              <p class="card__date">2026.03.10</p>
+            </div>
+          </a>
+          <a href="article-02.html" class="card">
+            <img src="../images/blog-thumb-02.svg" alt="春期講習" class="card__image" width="600" height="338">
+            <div class="card__body">
+              <span class="card__tag">教室ニュース</span>
+              <h2 class="card__title">春期講習のお知らせ</h2>
+              <p class="card__text">2026年春期講習の受付を開始しました。新学年に向けた準備を一緒にしませんか？</p>
+              <p class="card__date">2026.03.01</p>
+            </div>
+          </a>
+          <a href="article-03.html" class="card">
+            <img src="../images/blog-thumb-03.svg" alt="高校入試" class="card__image" width="600" height="338">
+            <div class="card__body">
+              <span class="card__tag">受験情報</span>
+              <h2 class="card__title">2026年度 高校入試の傾向と対策</h2>
+              <p class="card__text">今年度の高校入試の傾向を分析し、効果的な対策方法をまとめました。</p>
+              <p class="card__date">2026.02.15</p>
+            </div>
+          </a>
+          <!-- /CMS_POSTS -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__logo"><img src="../images/logo.svg" alt="まなび学習塾" width="200" height="50"></div>
+        <p class="footer__catchcopy">一人ひとりの「わかった！」を大切に。</p>
+        <dl class="footer__info"><dt>住所</dt><dd>〒541-0053 大阪府大阪市中央区本町3-1-2 本町ビル2F</dd><dt>電話番号</dt><dd>TEL: 06-1234-5678</dd><dt>営業時間</dt><dd>平日 14:00〜22:00 / 土曜 10:00〜18:00</dd></dl>
+      </div>
+      <div><p class="footer__nav-title">ページ</p><ul class="footer__nav-list"><li><a href="../">ホーム</a></li><li><a href="../courses/">コース・料金</a></li><li><a href="../teachers/">講師紹介</a></li><li><a href="../access/">教室案内</a></li></ul></div>
+      <div><p class="footer__nav-title">情報</p><ul class="footer__nav-list"><li><a href="../blog/">塾長ブログ</a></li><li><a href="../contact/">お問い合わせ</a></li><li><a href="#">プライバシーポリシー</a></li></ul></div>
+      <div><p class="footer__nav-title">お問い合わせ</p><ul class="footer__nav-list"><li><a href="tel:06-1234-5678">06-1234-5678</a></li><li><a href="../contact/">体験授業のお申し込み</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><p class="footer__copyright">&copy; 2026 まなび学習塾 All Rights Reserved.</p></div>
+  </footer>
+  <div class="cta-bar"><div class="cta-bar__inner">
+    <a href="tel:06-1234-5678" class="cta-bar__phone"><span class="cta-bar__phone-icon">&#9742;</span><span class="cta-bar__phone-number">06-1234-5678</span><span class="cta-bar__phone-time">平日14:00〜22:00</span></a>
+    <a href="../contact/" class="cta-bar__button">&#9998; 体験授業・資料請求</a>
+  </div></div>
+  <script src="../js/main.js"></script>
+</body>
+</html>

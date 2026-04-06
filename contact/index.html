@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ★差替え：title -->
+  <title>お問い合わせ｜まなび学習塾</title>
+  <meta name="description" content="まなび学習塾へのお問い合わせ。体験授業のお申し込み・ご質問など、お気軽にご連絡ください。">
+  <!-- OGP -->
+  <meta property="og:title" content="お問い合わせ｜まなび学習塾">
+  <meta property="og:description" content="体験授業のお申し込み・ご質問など、お気軽にお問い合わせください。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/contact/">
+  <meta property="og:image" content="https://example.com/images/og-image.jpg">
+  <!-- Google Fonts -->
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/cta-bar.css">
+  <link rel="stylesheet" href="../css/pages/contact.css">
+</head>
+<body class="has-header has-cta-bar">
+
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header__inner">
+      <div class="header__logo">
+        <a href="../"><img src="../images/logo.svg" alt="まなび学習塾" width="200" height="50"></a>
+      </div>
+      <nav class="header__nav" aria-label="メインナビゲーション">
+        <a href="../" class="header__nav-link">ホーム</a>
+        <a href="../courses/" class="header__nav-link">コース・料金</a>
+        <a href="../teachers/" class="header__nav-link">講師紹介</a>
+        <a href="../access/" class="header__nav-link">教室案内</a>
+        <a href="../blog/" class="header__nav-link">ブログ</a>
+        <a href="../contact/" class="header__nav-link">お問い合わせ</a>
+      </nav>
+      <div class="header__actions">
+        <a href="tel:06-1234-5678" class="header__phone"><span class="header__phone-icon">&#9742;</span>06-1234-5678</a>
+        <a href="../contact/" class="btn btn--primary header__cta">体験授業はこちら</a>
+      </div>
+      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false">
+        <span class="hamburger__line"></span><span class="hamburger__line"></span><span class="hamburger__line"></span>
+      </button>
+    </div>
+  </header>
+  <nav class="mobile-menu" aria-label="モバイルナビゲーション">
+    <a href="../" class="mobile-menu__link">ホーム</a>
+    <a href="../courses/" class="mobile-menu__link">コース・料金</a>
+    <a href="../teachers/" class="mobile-menu__link">講師紹介</a>
+    <a href="../access/" class="mobile-menu__link">教室案内</a>
+    <a href="../blog/" class="mobile-menu__link">ブログ</a>
+    <a href="../contact/" class="mobile-menu__link">お問い合わせ</a>
+    <a href="tel:06-1234-5678" class="mobile-menu__phone"><span>&#9742;</span> 06-1234-5678</a>
+    <a href="../contact/" class="btn btn--primary btn--block mobile-menu__cta">体験授業を申し込む</a>
+  </nav>
+
+  <main>
+    <!-- ページヘッダー -->
+    <div class="page-header">
+      <div class="container">
+        <p class="page-header__breadcrumb"><a href="../">ホーム</a> &gt; お問い合わせ</p>
+        <h1 class="page-header__title">お問い合わせ</h1>
+      </div>
+    </div>
+
+    <!-- お問い合わせフォーム -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <span class="section-title__label">Contact</span>
+          <h2 class="section-title__heading">お問い合わせ</h2>
+        </div>
+        <p class="contact-intro">体験授業のお申し込み・ご質問など、お気軽にお問い合わせください。</p>
+
+        <!-- ★差替え：フォーム送信先 -->
+        <form class="contact-form" action="" method="POST">
+
+          <div class="form-group">
+            <label class="form-group__label" for="name">お名前<span class="form-group__required">必須</span></label>
+            <input class="form-group__input" type="text" id="name" name="name" placeholder="例：山田 太郎" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__label" for="email">メールアドレス<span class="form-group__required">必須</span></label>
+            <input class="form-group__input" type="email" id="email" name="email" placeholder="例：info@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__label" for="tel">電話番号</label>
+            <input class="form-group__input" type="tel" id="tel" name="tel" placeholder="例：090-1234-5678">
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__label" for="grade">お子さまの学年</label>
+            <select class="form-group__input" id="grade" name="grade">
+              <option value="">選択してください</option>
+              <option value="小学4年">小学4年</option>
+              <option value="小学5年">小学5年</option>
+              <option value="小学6年">小学6年</option>
+              <option value="中学1年">中学1年</option>
+              <option value="中学2年">中学2年</option>
+              <option value="中学3年">中学3年</option>
+              <option value="高校1年">高校1年</option>
+              <option value="高校2年">高校2年</option>
+              <option value="高校3年">高校3年</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <p class="form-group__label">お問い合わせ種別</p>
+            <div class="form-group__radios">
+              <label class="form-group__radio"><input type="radio" name="type" value="体験授業"> 体験授業</label>
+              <label class="form-group__radio"><input type="radio" name="type" value="資料請求"> 資料請求</label>
+              <label class="form-group__radio"><input type="radio" name="type" value="入会相談"> 入会相談</label>
+              <label class="form-group__radio"><input type="radio" name="type" value="その他"> その他</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-group__label" for="message">お問い合わせ内容</label>
+            <textarea class="form-group__input" id="message" name="message" rows="6" placeholder="お問い合わせ内容をご記入ください"></textarea>
+          </div>
+
+          <div class="form-group form-group--submit">
+            <button type="submit" class="btn btn--primary btn--lg btn--block">送信する</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- 電話・LINE -->
+    <section class="section section--bg">
+      <div class="container">
+        <!-- ★差替え：教室外観画像 -->
+        <div class="contact-photo" style="margin-bottom: 32px; text-align: center;">
+          <img src="../images/classroom-exterior.svg" alt="まなび学習塾 外観" width="800" height="450" style="border-radius: 12px; max-width: 600px; width: 100%;" loading="lazy">
+        </div>
+        <div class="contact-methods">
+          <div class="contact-methods__column">
+            <h3 class="contact-methods__title">電話でのお問い合わせ</h3>
+            <!-- ★差替え：電話番号 -->
+            <a href="tel:06-1234-5678" class="contact-methods__phone">&#9742; 06-1234-5678</a>
+            <!-- ★差替え：受付時間 -->
+            <p class="contact-methods__time">受付時間：平日 14:00〜22:00 / 土曜 10:00〜18:00</p>
+          </div>
+          <div class="contact-methods__column">
+            <h3 class="contact-methods__title">LINEでのお問い合わせ</h3>
+            <p class="contact-methods__text">LINEからもお気軽にお問い合わせいただけます。</p>
+            <!-- ★差替え：LINE友達追加URL -->
+            <a href="#" class="btn btn--line btn--lg btn--block">LINE友だち追加</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- よくある質問 -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <span class="section-title__label">FAQ</span>
+          <h2 class="section-title__heading">よくある質問</h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-item__question">体験授業はありますか？</div>
+            <div class="faq-item__answer">はい、無料体験授業を随時受け付けています。お気軽にお申し込みください。</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-item__question">途中で教科を変更できますか？</div>
+            <div class="faq-item__answer">はい、月単位で変更可能です。担当講師にご相談ください。</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-item__question">自習室は使えますか？</div>
+            <div class="faq-item__answer">営業時間中は自由にご利用いただけます。静かな環境で集中して学習できます。</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-item__question">振替授業はありますか？</div>
+            <div class="faq-item__answer">前日までにご連絡いただければ振替可能です。急な体調不良にも対応いたします。</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-item__question">入塾テストはありますか？</div>
+            <div class="faq-item__answer">入塾テストはありません。面談でお話を伺い、最適なプランをご提案します。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="contact-cta">
+      <div class="container">
+        <p class="contact-cta__lead">まずは無料体験授業でお試しください</p>
+        <div class="contact-cta__columns">
+          <div class="contact-cta__column">
+            <a href="../contact/" class="btn btn--white btn--lg btn--block">無料体験授業のお申し込み</a>
+          </div>
+          <div class="contact-cta__column">
+            <a href="tel:06-1234-5678" class="contact-cta__phone-number">&#9742; 06-1234-5678</a>
+            <p class="contact-cta__phone-time">受付時間：平日 14:00〜22:00 / 土曜 10:00〜18:00</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__logo"><img src="../images/logo.svg" alt="まなび学習塾" width="200" height="50"></div>
+        <p class="footer__catchcopy">一人ひとりの「わかった！」を大切に。</p>
+        <dl class="footer__info">
+          <dt>住所</dt><dd>〒541-0053 大阪府大阪市中央区本町3-1-2 本町ビル2F</dd>
+          <dt>電話番号</dt><dd>TEL: 06-1234-5678</dd>
+          <dt>営業時間</dt><dd>平日 14:00〜22:00 / 土曜 10:00〜18:00</dd>
+        </dl>
+      </div>
+      <div>
+        <p class="footer__nav-title">ページ</p>
+        <ul class="footer__nav-list">
+          <li><a href="../">ホーム</a></li><li><a href="../courses/">コース・料金</a></li>
+          <li><a href="../teachers/">講師紹介</a></li><li><a href="../access/">教室案内</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__nav-title">情報</p>
+        <ul class="footer__nav-list">
+          <li><a href="../blog/">塾長ブログ</a></li><li><a href="../contact/">お問い合わせ</a></li>
+          <li><a href="#">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__nav-title">お問い合わせ</p>
+        <ul class="footer__nav-list">
+          <li><a href="tel:06-1234-5678">06-1234-5678</a></li>
+          <li><a href="../contact/">体験授業のお申し込み</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">&copy; 2026 まなび学習塾 All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <div class="cta-bar">
+    <div class="cta-bar__inner">
+      <a href="tel:06-1234-5678" class="cta-bar__phone">
+        <span class="cta-bar__phone-icon">&#9742;</span>
+        <span class="cta-bar__phone-number">06-1234-5678</span>
+        <span class="cta-bar__phone-time">平日14:00〜22:00</span>
+      </a>
+      <a href="../contact/" class="cta-bar__button">&#9998; 体験授業・資料請求</a>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

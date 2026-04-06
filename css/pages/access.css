@@ -1,0 +1,391 @@
+/* ===================================
+   Access -- アクセス・教室案内ページ固有スタイル
+   Warm / Friendly / Approachable redesign
+   =================================== */
+
+/* --- 教室写真ギャラリー --- */
+.gallery,
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.gallery__item {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(62, 58, 53, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery__item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(62, 58, 53, 0.10);
+}
+
+.gallery__item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  border-radius: 16px;
+}
+
+.gallery__item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.55));
+  color: var(--color-white);
+  padding: 16px;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  border-radius: 0 0 16px 16px;
+  letter-spacing: 0.02em;
+}
+
+/* 1枚目を大きく表示 */
+.gallery__item--featured {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.gallery__item--featured img {
+  aspect-ratio: auto;
+  height: 100%;
+}
+
+/* --- Google Maps --- */
+.map-section {
+  margin-bottom: 0;
+}
+
+.map-embed {
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(62, 58, 53, 0.10);
+}
+
+.map-embed iframe {
+  width: 100%;
+  height: 400px;
+  display: block;
+}
+
+/* --- アクセス情報 --- */
+.access-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.access-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.access-table tr {
+  transition: background-color 0.3s ease;
+}
+
+.access-table tr:hover {
+  background-color: var(--color-primary-light, #E8F5E9);
+  border-radius: 12px;
+}
+
+.access-table th,
+.access-table td {
+  padding: 16px 12px;
+  font-size: 0.9375rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-bg-alt, #F5F0E8);
+}
+
+.access-table th {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  white-space: nowrap;
+  width: 100px;
+  padding-right: 24px;
+}
+
+.access-table td {
+  color: var(--color-text);
+}
+
+.access-table td a {
+  color: var(--color-accent);
+  font-weight: var(--font-weight-medium);
+  transition: color 0.3s ease;
+}
+
+.access-table td a:hover {
+  opacity: 1;
+  color: var(--color-primary);
+}
+
+/* Access info as warm cards (alternative layout) */
+.access-card {
+  background-color: var(--color-white);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(62, 58, 53, 0.08);
+}
+
+.access-card__item {
+  display: flex;
+  gap: 16px;
+  padding: 14px 0;
+}
+
+.access-card__item + .access-card__item {
+  border-top: 1px solid var(--color-bg-alt, #F5F0E8);
+}
+
+.access-card__label {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  min-width: 100px;
+  font-size: 0.9375rem;
+}
+
+.access-card__value {
+  color: var(--color-text);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+/* --- 交通アクセス・道案内 --- */
+.directions {
+  background-color: var(--color-white);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 2px 12px rgba(62, 58, 53, 0.08);
+}
+
+.directions__title {
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: 24px;
+}
+
+.directions__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: direction;
+}
+
+.directions__item {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  align-items: flex-start;
+  position: relative;
+}
+
+.directions__item + .directions__item {
+  border-top: 1px solid var(--color-bg-alt, #F5F0E8);
+}
+
+/* Connecting line between steps */
+.directions__item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 18px;
+  top: 52px;
+  bottom: -16px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-accent));
+  opacity: 0.3;
+}
+
+.directions__step {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark, #1B5E3A));
+  color: var(--color-white);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(46, 125, 79, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.directions__icon {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-accent), #E08D3C);
+  color: var(--color-white);
+  font-size: 1rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(244, 162, 97, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.directions__text {
+  flex: 1;
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  line-height: 1.8;
+  padding-top: 6px;
+}
+
+/* --- 近隣エリア情報 --- */
+.area-info {
+  text-align: center;
+}
+
+.area-info__text {
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  line-height: 1.9;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.area-schools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.area-schools__tag {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  background-color: var(--color-primary-light, #E8F5E9);
+  padding: 6px 16px;
+  border-radius: 9999px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  letter-spacing: 0.02em;
+}
+
+.area-schools__tag:hover {
+  background-color: var(--color-bg-alt, #F5F0E8);
+  transform: translateY(-1px);
+}
+
+/* ===================================
+   レスポンシブ
+   =================================== */
+
+@media (max-width: 768px) {
+  .gallery,
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .gallery__item--featured {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .gallery__item--featured img {
+    aspect-ratio: 4 / 3;
+    height: auto;
+  }
+
+  .map-embed {
+    border-radius: 16px;
+  }
+
+  .map-embed iframe {
+    height: 300px;
+  }
+
+  .access-info {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .directions {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  .directions__item:not(:last-child)::before {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery,
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .gallery__item {
+    border-radius: 12px;
+  }
+
+  .gallery__item img {
+    border-radius: 12px;
+  }
+
+  .gallery__caption {
+    font-size: 0.875rem;
+    padding: 10px;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .map-embed {
+    border-radius: 12px;
+  }
+
+  .map-embed iframe {
+    height: 240px;
+  }
+
+  .access-table th {
+    width: 80px;
+    padding-right: 16px;
+    font-size: 0.875rem;
+  }
+
+  .access-table td {
+    font-size: 0.875rem;
+  }
+
+  .directions__item {
+    gap: 12px;
+  }
+
+  .directions__step,
+  .directions__icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.875rem;
+  }
+
+  .directions {
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
+}
