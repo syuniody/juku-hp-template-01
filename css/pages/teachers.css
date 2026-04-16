@@ -1,0 +1,362 @@
+/* ===================================
+   Teachers -- 講師紹介ページ固有スタイル
+   Warm / Friendly / Approachable redesign
+   =================================== */
+
+/* --- 塾長プロフィール --- */
+.principal {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.principal__photo {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(62, 58, 53, 0.10);
+}
+
+.principal__photo img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.principal__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.principal__name {
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-extra-bold, 800);
+  color: var(--color-primary);
+  letter-spacing: 0.04em;
+}
+
+.principal__role {
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-text);
+  margin-top: -4px;
+  letter-spacing: 0.02em;
+}
+
+.principal__bio {
+  font-size: 1rem;
+  line-height: 2;
+  color: var(--color-text);
+}
+
+.principal__qualifications {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.principal__qualifications li {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  background-color: var(--color-primary-light, #E8F5E9);
+  padding: 6px 16px;
+  border-radius: 9999px;
+  transition: background-color 0.3s ease;
+  letter-spacing: 0.02em;
+}
+
+.principal__qualifications li:hover {
+  background-color: var(--color-bg-alt, #F5F0E8);
+}
+
+/* --- 講師カードグリッド --- */
+.teacher-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.teacher-card {
+  background-color: var(--color-white);
+  border-radius: 24px;
+  box-shadow: 0 2px 12px rgba(62, 58, 53, 0.08);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.teacher-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(62, 58, 53, 0.10);
+}
+
+.teacher-card__photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background-color: var(--color-bg-alt, #F5F0E8);
+}
+
+.teacher-card__body {
+  padding: 24px;
+}
+
+.teacher-card__name {
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.teacher-card__subjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.teacher-card__subject {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  background-color: var(--color-accent);
+  padding: 3px 12px;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
+}
+
+.teacher-card__message {
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  line-height: 1.8;
+}
+
+/* --- 教育方針 / お約束セクション --- */
+.philosophy-list,
+.promise-list {
+  max-width: 800px;
+  margin: 0 auto;
+  counter-reset: philosophy;
+}
+
+.philosophy-item,
+.promise-item {
+  display: flex;
+  gap: 20px;
+  padding: 24px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+  background-color: var(--color-white);
+  border-radius: 16px;
+  border-left: 4px solid var(--color-primary);
+  box-shadow: 0 2px 12px rgba(62, 58, 53, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.philosophy-item:hover,
+.promise-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(62, 58, 53, 0.10);
+  background-color: var(--color-primary-light, #E8F5E9);
+}
+
+.philosophy-item__number,
+.promise-item__number {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark, #1B5E3A));
+  color: var(--color-white);
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(46, 125, 79, 0.2);
+}
+
+.philosophy-item__content,
+.promise-item__content {
+  flex: 1;
+}
+
+.philosophy-item__title,
+.promise-item__title {
+  font-size: 1.0625rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: 6px;
+}
+
+.philosophy-item__text,
+.promise-item__text {
+  font-size: 1rem;
+  color: var(--color-text);
+  line-height: 1.8;
+}
+
+/* --- 生徒の声（テスティモニアル） --- */
+.teacher-testimonials {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.teacher-testimonial {
+  background-color: var(--color-white);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 2px 12px rgba(62, 58, 53, 0.08);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.teacher-testimonial:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(62, 58, 53, 0.10);
+}
+
+.teacher-testimonial::before {
+  content: '\201C';
+  font-size: 4rem;
+  color: var(--color-accent);
+  opacity: 0.25;
+  position: absolute;
+  top: 12px;
+  left: 24px;
+  line-height: 1;
+  font-family: Georgia, serif;
+}
+
+/* Speech-bubble tail */
+.teacher-testimonial::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 40px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-white);
+  box-shadow: 2px 2px 4px rgba(62, 58, 53, 0.06);
+  transform: rotate(45deg);
+  border-radius: 0 0 4px 0;
+}
+
+.teacher-testimonial__text {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--color-text);
+  margin-bottom: 20px;
+  padding-top: 24px;
+}
+
+.teacher-testimonial__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  margin-top: 4px;
+  border-top: 2px solid var(--color-bg-alt, #F5F0E8);
+}
+
+.teacher-testimonial__author {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+.teacher-testimonial__grade {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  background-color: var(--color-primary-light, #E8F5E9);
+  padding: 2px 12px;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
+  font-weight: var(--font-weight-bold);
+}
+
+/* ===================================
+   レスポンシブ
+   =================================== */
+
+@media (max-width: 768px) {
+  .principal {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .principal__photo {
+    max-width: 240px;
+    margin: 0 auto;
+    border-radius: 50%;
+  }
+
+  .principal__photo img {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+  }
+
+  .principal__qualifications {
+    justify-content: center;
+  }
+
+  .teacher-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .teacher-testimonials {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .philosophy-item,
+  .promise-item {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .principal__photo {
+    max-width: 180px;
+  }
+
+  .teacher-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-card {
+    border-radius: 16px;
+  }
+
+  .philosophy-item,
+  .promise-item {
+    gap: 14px;
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .philosophy-item__number,
+  .promise-item__number {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .teacher-testimonial {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  .teacher-testimonial::after {
+    display: none;
+  }
+}

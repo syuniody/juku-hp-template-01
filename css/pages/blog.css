@@ -1,0 +1,572 @@
+/* ===================================
+   Blog -- ブログページ固有スタイル
+   Warm / Friendly / Approachable redesign
+   =================================== */
+
+/* --- カテゴリフィルター (dual class support) --- */
+.category-filter,
+.blog-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 44px;
+}
+
+.category-filter__pill,
+.blog-category {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-light);
+  background-color: var(--color-white);
+  padding: 8px 22px;
+  border-radius: 9999px;
+  border: 2px solid var(--color-bg-alt, #F5F0E8);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.category-filter__pill:hover,
+.blog-category:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background-color: var(--color-bg, #FFFDF7);
+  transform: translateY(-1px);
+}
+
+.category-filter__pill.is-active,
+.blog-category.is-active {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border-color: var(--color-accent);
+  box-shadow: 0 2px 8px rgba(244, 162, 97, 0.3);
+}
+
+/* --- ブログ記事一覧グリッド --- */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* Blog card overrides */
+.blog-card {
+  background-color: var(--color-white);
+  border-radius: 24px;
+  box-shadow: 0 2px 12px rgba(62, 58, 53, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(62, 58, 53, 0.10);
+}
+
+.blog-card .card__image,
+.blog-card__image {
+  overflow: hidden;
+}
+
+.blog-card .card__image img,
+.blog-card__image img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.blog-card:hover .card__image img,
+.blog-card:hover .blog-card__image img {
+  transform: scale(1.05);
+}
+
+.blog-card .card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+}
+
+.blog-card .card__excerpt,
+.blog-card__excerpt {
+  font-size: 1rem;
+  color: var(--color-text);
+  line-height: 1.8;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog-card .card__category,
+.blog-card__category {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  background-color: var(--color-accent);
+  padding: 3px 12px;
+  border-radius: 9999px;
+  align-self: flex-start;
+  letter-spacing: 0.02em;
+}
+
+.blog-card .card__date,
+.blog-card__date {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* --- ページネーション --- */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 52px;
+}
+
+.pagination__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-light);
+  background-color: var(--color-white);
+  box-shadow: 0 2px 8px rgba(62, 58, 53, 0.06);
+  transition: all 0.3s ease;
+}
+
+.pagination__item:hover {
+  background-color: var(--color-primary-light, #E8F5E9);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(62, 58, 53, 0.10);
+}
+
+.pagination__item.is-active {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark, #1B5E3A));
+  color: var(--color-white);
+  box-shadow: 0 2px 12px rgba(46, 125, 79, 0.25);
+}
+
+.pagination__item.is-disabled {
+  color: var(--color-text-muted);
+  pointer-events: none;
+  opacity: 0.4;
+  box-shadow: none;
+}
+
+.pagination__dots {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* ===================================
+   記事詳細ページ
+   =================================== */
+
+/* --- 記事ヘッダー --- */
+.article-header {
+  max-width: 800px;
+  margin: 0 auto 44px;
+  text-align: center;
+}
+
+.article-header__category {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  background-color: var(--color-accent);
+  padding: 4px 16px;
+  border-radius: 9999px;
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+
+.article-header__title {
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.article-header__meta {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.article-header__thumbnail {
+  margin-top: 36px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(62, 58, 53, 0.10);
+}
+
+.article-header__thumbnail img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* --- アイキャッチ画像 --- */
+.article__eyecatch {
+  max-width: 800px;
+  margin: 0 auto 36px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(62, 58, 53, 0.10);
+}
+
+.article__eyecatch img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* --- 記事本文 --- */
+.article-body {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.article-body h2 {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-top: 52px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid var(--color-accent);
+}
+
+.article-body h3 {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-top: 36px;
+  margin-bottom: 14px;
+  padding-left: 14px;
+  border-left: 4px solid var(--color-accent);
+}
+
+.article-body p {
+  font-size: 1rem;
+  line-height: 2;
+  color: var(--color-text);
+  margin-bottom: 1.5em;
+}
+
+.article-body ul,
+.article-body ol {
+  margin-bottom: 1.5em;
+  padding-left: 1.5em;
+}
+
+.article-body li {
+  font-size: 1rem;
+  line-height: 2;
+  color: var(--color-text);
+  margin-bottom: 0.5em;
+}
+
+.article-body blockquote {
+  margin: 28px 0;
+  padding: 24px 28px;
+  background-color: var(--color-bg-alt, #F5F0E8);
+  border-left: 4px solid var(--color-accent);
+  border-radius: 0 16px 16px 0;
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  line-height: 1.9;
+}
+
+.article-body blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.article-body img {
+  width: 100%;
+  border-radius: 16px;
+  margin: 28px 0;
+  box-shadow: 0 2px 12px rgba(62, 58, 53, 0.08);
+}
+
+.article-body strong {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+.article-body a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.3s ease;
+}
+
+.article-body a:hover {
+  color: var(--color-primary);
+  opacity: 1;
+}
+
+/* コードブロック */
+.article-body pre {
+  background-color: #2D3748;
+  color: #E2E8F0;
+  padding: 24px 28px;
+  border-radius: 16px;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  margin: 28px 0;
+  box-shadow: 0 2px 12px rgba(62, 58, 53, 0.08);
+}
+
+.article-body code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.875em;
+  background-color: var(--color-bg-alt, #F5F0E8);
+  padding: 3px 8px;
+  border-radius: 6px;
+  color: var(--color-primary);
+}
+
+.article-body pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  border-radius: 0;
+}
+
+/* テーブル（記事内） */
+.article-body table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 28px 0;
+  font-size: 0.9375rem;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(62, 58, 53, 0.08);
+}
+
+.article-body table th,
+.article-body table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-bg-alt, #F5F0E8);
+}
+
+.article-body table th {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark, #1B5E3A));
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  border-bottom: none;
+}
+
+.article-body table tbody tr:nth-child(even) {
+  background-color: var(--color-bg, #FFFDF7);
+}
+
+.article-body table tbody tr:hover {
+  background-color: var(--color-primary-light, #E8F5E9);
+}
+
+/* --- 関連記事 --- */
+.related-articles {
+  margin-top: 72px;
+  padding-top: 52px;
+  border-top: 2px solid var(--color-bg-alt, #F5F0E8);
+}
+
+.related-articles__title {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: 28px;
+}
+
+.related-articles__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.related-articles__grid .blog-card,
+.related-articles__grid .card {
+  border-radius: 16px;
+}
+
+/* --- 記事CTA --- */
+.article-cta {
+  max-width: 800px;
+  margin: 52px auto 0;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark, #1B5E3A));
+  border-radius: 24px;
+  padding: 44px;
+  text-align: center;
+  color: var(--color-white);
+  box-shadow: 0 4px 20px rgba(46, 125, 79, 0.15);
+}
+
+.article-cta__title {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  margin-bottom: 10px;
+}
+
+.article-cta__text {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 28px;
+}
+
+.article-cta__buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ===================================
+   レスポンシブ
+   =================================== */
+
+@media (max-width: 768px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .article-header__title {
+    font-size: 1.375rem;
+  }
+
+  .article-header__thumbnail {
+    border-radius: 16px;
+  }
+
+  .article__eyecatch {
+    border-radius: 16px;
+  }
+
+  .article-body h2 {
+    font-size: 1.25rem;
+    margin-top: 40px;
+  }
+
+  .article-body h3 {
+    font-size: 1.0625rem;
+    margin-top: 28px;
+  }
+
+  .related-articles__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .article-cta {
+    padding: 36px 28px;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-filter,
+  .blog-categories {
+    gap: 6px;
+  }
+
+  .category-filter__pill,
+  .blog-category {
+    font-size: 0.875rem;
+    padding: 6px 14px;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-card {
+    border-radius: 16px;
+  }
+
+  .article-header__title {
+    font-size: 1.25rem;
+  }
+
+  .article-header__thumbnail {
+    border-radius: 12px;
+  }
+
+  .article__eyecatch {
+    border-radius: 12px;
+  }
+
+  .article-body p,
+  .article-body li {
+    font-size: 0.9375rem;
+  }
+
+  .article-body blockquote {
+    padding: 18px 16px;
+    border-radius: 0 12px 12px 0;
+  }
+
+  .article-body pre {
+    border-radius: 12px;
+    padding: 18px 16px;
+  }
+
+  .article-body img {
+    border-radius: 12px;
+  }
+
+  .article-body table {
+    border-radius: 12px;
+  }
+
+  .pagination__item {
+    width: 38px;
+    height: 38px;
+    font-size: 0.875rem;
+    border-radius: 10px;
+  }
+
+  .related-articles__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .article-cta {
+    padding: 28px 20px;
+    border-radius: 12px;
+  }
+
+  .article-cta__buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .article-cta__buttons .btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,168 @@
+/* ===================================
+   CTA Bar — 常時表示の固定CTAバー
+   PC: 右下にフローティング表示
+   SP: 画面下部フル幅バー
+   =================================== */
+
+/* === PC表示：右下フローティング === */
+.cta-bar {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 998;
+  display: flex;
+  border-radius: var(--radius-lg, 24px);
+  overflow: hidden;
+  box-shadow: 0 6px 32px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
+  animation: cta-bar-slide-in 0.5s ease-out;
+}
+
+@keyframes cta-bar-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cta-bar__inner {
+  display: flex;
+  height: 100%;
+}
+
+/* --- 左：電話 --- */
+.cta-bar__phone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 14px 24px;
+  background-color: var(--color-white, #FFFFFF);
+  color: var(--color-primary, #1A8C4E);
+  font-weight: var(--font-weight-bold, 700);
+  border-right: 1px solid var(--color-border, #DDD7CE);
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.cta-bar__phone:hover {
+  background-color: var(--color-primary-light, #DCEFD8);
+  opacity: 1;
+}
+
+.cta-bar__phone-icon {
+  font-size: 1.375rem;
+  line-height: 1;
+}
+
+.cta-bar__phone-number {
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-bold, 700);
+  letter-spacing: 0.03em;
+  color: var(--color-primary, #1A8C4E);
+}
+
+.cta-bar__phone-time {
+  font-size: 0.875rem;
+  color: var(--color-text-light, #6B6560);
+  font-weight: var(--font-weight-bold, 700);
+  letter-spacing: 0.02em;
+}
+
+/* --- 右：体験授業ボタン --- */
+.cta-bar__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, var(--color-accent, #EF8B2C) 0%, #E07020 100%);
+  color: var(--color-white, #FFFFFF);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-bold, 700);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.cta-bar__button:hover {
+  background: linear-gradient(135deg, #E07020 0%, var(--color-accent-dark, #D47520) 100%);
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+/* --- body paddingは不要（PCではフローティングのため） --- */
+.has-cta-bar {
+  padding-bottom: 0;
+}
+
+/* === SP表示：画面下部フル幅バー === */
+@media (max-width: 768px) {
+  .cta-bar {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: 0;
+    box-shadow: 0 -3px 16px rgba(0, 0, 0, 0.12);
+    animation: none;
+  }
+
+  .cta-bar__inner {
+    display: flex;
+    width: 100%;
+  }
+
+  .cta-bar__phone {
+    flex: 0 0 auto;
+    padding: 10px 16px;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .cta-bar__phone-icon {
+    font-size: 1.25rem;
+  }
+
+  .cta-bar__phone-number {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .cta-bar__phone-time {
+    display: none;
+  }
+
+  .cta-bar__button {
+    flex: 1 1 auto;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .has-cta-bar {
+    padding-bottom: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-bar__phone {
+    padding: 10px 12px;
+    gap: 6px;
+  }
+
+  .cta-bar__phone-number {
+    font-size: 0.9375rem;
+  }
+
+  .cta-bar__button {
+    font-size: 0.9375rem;
+    padding: 12px 12px;
+    font-weight: 700;
+  }
+}

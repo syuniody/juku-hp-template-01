@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理画面 | まなび学習塾</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #1A8C4E;
+      --primary-light: #e8f5e9;
+      --sidebar-bg: #1e293b;
+      --sidebar-text: #94a3b8;
+      --sidebar-active: #ffffff;
+      --bg: #f1f5f9;
+      --white: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --radius: 8px;
+      --danger: #ef4444;
+    }
+    body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+
+    /* === Sidebar === */
+    .sidebar { width: 240px; background: var(--sidebar-bg); color: var(--sidebar-text); flex-shrink: 0; display: flex; flex-direction: column; }
+    .sidebar__logo { padding: 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .sidebar__logo-text { font-size: 0.75rem; color: var(--sidebar-text); margin-bottom: 4px; }
+    .sidebar__logo-name { font-size: 1.125rem; font-weight: 700; color: var(--sidebar-active); }
+    .sidebar__section-label { font-size: 0.6875rem; color: var(--sidebar-text); padding: 20px 20px 8px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; }
+    .sidebar__nav { flex: 1; }
+    .sidebar__item { display: flex; align-items: center; gap: 12px; padding: 11px 20px; font-size: 0.875rem; color: var(--sidebar-text); cursor: pointer; transition: all 0.2s; border-left: 3px solid transparent; }
+    .sidebar__item:hover { background: rgba(255,255,255,0.05); color: var(--sidebar-active); }
+    .sidebar__item.is-active { color: var(--sidebar-active); background: rgba(255,255,255,0.08); border-left-color: var(--primary); }
+    .sidebar__icon { font-size: 1rem; width: 20px; text-align: center; }
+    .sidebar__footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8125rem; }
+    .sidebar__footer a { color: var(--sidebar-text); text-decoration: none; }
+    .sidebar__footer a:hover { color: var(--sidebar-active); }
+
+    /* === Main === */
+    .main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+    .topbar { background: var(--white); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; justify-content: space-between; align-items: center; }
+    .topbar__title { font-size: 1.25rem; font-weight: 700; }
+    .topbar__user { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: var(--text-light); }
+    .topbar__avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--primary-light); display: flex; align-items: center; justify-content: center; font-size: 0.875rem; color: var(--primary); font-weight: 700; }
+    .content { padding: 28px 32px; flex: 1; overflow-y: auto; }
+
+    /* === Panel (show/hide) === */
+    .panel { display: none; }
+    .panel.is-active { display: block; }
+
+    /* === Common List === */
+    .list-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .list-header__count { font-size: 0.875rem; color: var(--text-light); }
+    .btn-new { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; background: var(--primary); color: var(--white); border: none; border-radius: var(--radius); font-size: 0.875rem; font-weight: 500; cursor: pointer; }
+    .btn-new:hover { opacity: 0.85; }
+
+    .post-list { display: flex; flex-direction: column; }
+    .post-item { display: grid; grid-template-columns: 1fr 120px 100px 80px; gap: 16px; align-items: center; padding: 14px 20px; background: var(--white); border-radius: var(--radius); cursor: pointer; transition: box-shadow 0.2s; margin-bottom: 6px; }
+    .post-item:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .post-item__title { font-weight: 500; font-size: 0.9375rem; }
+    .post-item__category { display: inline-block; padding: 3px 10px; background: var(--primary-light); color: var(--primary); font-size: 0.75rem; font-weight: 500; border-radius: 20px; text-align: center; }
+    .post-item__date { font-size: 0.8125rem; color: var(--text-light); }
+    .post-item__status { font-size: 0.75rem; padding: 3px 8px; border-radius: 4px; text-align: center; font-weight: 500; }
+    .post-item__status--published { background: #dcfce7; color: #16a34a; }
+    .post-item__status--draft { background: #fef3c7; color: #d97706; }
+
+    /* === Edit Form === */
+    .edit-view { display: none; }
+    .edit-view.is-active { display: block; }
+    .list-view.is-hidden { display: none; }
+    .edit-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .edit-header__back { display: inline-flex; align-items: center; gap: 6px; background: none; border: none; color: var(--text-light); font-size: 0.875rem; cursor: pointer; }
+    .edit-header__back:hover { color: var(--text); }
+    .edit-header__actions { display: flex; gap: 8px; }
+    .btn-save { padding: 10px 24px; background: var(--primary); color: var(--white); border: none; border-radius: var(--radius); font-size: 0.875rem; font-weight: 500; cursor: pointer; }
+    .btn-save:hover { opacity: 0.85; }
+    .btn-draft { padding: 10px 24px; background: var(--white); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.875rem; cursor: pointer; }
+    .edit-form { background: var(--white); border-radius: var(--radius); padding: 28px; }
+    .form-group { margin-bottom: 20px; }
+    .form-label { display: block; font-size: 0.8125rem; font-weight: 500; color: var(--text-light); margin-bottom: 6px; letter-spacing: 0.03em; }
+    .form-input { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.9375rem; font-family: inherit; }
+    .form-input:focus { outline: none; border-color: var(--primary); }
+    .form-select { width: 200px; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.9375rem; font-family: inherit; background: var(--white); }
+    .form-textarea { width: 100%; min-height: 200px; padding: 14px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.9375rem; font-family: 'SFMono-Regular', Consolas, monospace; line-height: 1.8; resize: vertical; }
+    .form-textarea:focus { outline: none; border-color: var(--primary); }
+    .editor-toolbar { display: flex; gap: 4px; padding: 8px 12px; background: #f8fafc; border: 1px solid var(--border); border-bottom: none; border-radius: var(--radius) var(--radius) 0 0; }
+    .editor-toolbar + .form-textarea { border-radius: 0 0 var(--radius) var(--radius); }
+    .toolbar-btn { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: none; border: 1px solid transparent; border-radius: 4px; cursor: pointer; font-size: 0.875rem; color: var(--text-light); }
+    .toolbar-btn:hover { background: var(--white); border-color: var(--border); color: var(--text); }
+    .toolbar-sep { width: 1px; background: var(--border); margin: 4px 8px; }
+    .form-image-upload { border: 2px dashed var(--border); border-radius: var(--radius); padding: 24px; text-align: center; color: var(--text-light); font-size: 0.875rem; cursor: pointer; }
+    .form-image-upload:hover { border-color: var(--primary); }
+    .form-image-upload__icon { font-size: 1.5rem; margin-bottom: 4px; }
+
+    /* === Table Edit (料金・合格実績) === */
+    .editable-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--radius); overflow: hidden; }
+    .editable-table th, .editable-table td { padding: 12px 16px; border: 1px solid var(--border); text-align: left; font-size: 0.875rem; }
+    .editable-table thead th { background: #f8fafc; font-weight: 600; font-size: 0.8125rem; color: var(--text-light); }
+    .editable-table input { width: 100%; border: none; font-size: 0.875rem; font-family: inherit; background: transparent; padding: 2px 0; }
+    .editable-table input:focus { outline: none; background: var(--primary-light); border-radius: 3px; padding: 2px 4px; }
+    .btn-add-row { display: inline-flex; align-items: center; gap: 4px; margin-top: 12px; padding: 8px 16px; background: var(--white); border: 1px dashed var(--border); border-radius: var(--radius); font-size: 0.8125rem; color: var(--text-light); cursor: pointer; }
+    .btn-add-row:hover { border-color: var(--primary); color: var(--primary); }
+    .btn-delete-row { background: none; border: none; color: var(--text-light); cursor: pointer; font-size: 1rem; padding: 2px 6px; }
+    .btn-delete-row:hover { color: var(--danger); }
+
+    /* === Score Card Grid === */
+    .score-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+    .score-edit-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+    .score-edit-card__row { display: flex; gap: 12px; margin-bottom: 8px; align-items: center; }
+    .score-edit-card__row:last-child { margin-bottom: 0; }
+    .score-edit-card label { font-size: 0.75rem; color: var(--text-light); min-width: 50px; }
+    .score-edit-card input { flex: 1; padding: 6px 10px; border: 1px solid var(--border); border-radius: 4px; font-size: 0.875rem; font-family: inherit; }
+    .score-edit-card input:focus { outline: none; border-color: var(--primary); }
+    .score-edit-card select { padding: 6px 10px; border: 1px solid var(--border); border-radius: 4px; font-size: 0.875rem; }
+
+    /* === Demo Banner === */
+    .demo-banner { background: var(--primary); color: var(--white); text-align: center; padding: 10px 16px; font-size: 0.8125rem; font-weight: 500; }
+
+    /* === Responsive === */
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .post-item { grid-template-columns: 1fr; gap: 6px; }
+      .content { padding: 20px 16px; }
+      .score-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <p class="sidebar__logo-text">CMS管理画面</p>
+      <p class="sidebar__logo-name">まなび学習塾</p>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__section-label">コンテンツ管理</div>
+      <div class="sidebar__item is-active" onclick="switchPanel('blog', this)">
+        <span class="sidebar__icon">&#128196;</span> ブログ記事
+      </div>
+      <div class="sidebar__item" onclick="switchPanel('price', this)">
+        <span class="sidebar__icon">&#128176;</span> 料金表
+      </div>
+      <div class="sidebar__item" onclick="switchPanel('results', this)">
+        <span class="sidebar__icon">&#127942;</span> 合格実績
+      </div>
+      <div class="sidebar__item" onclick="switchPanel('scores', this)">
+        <span class="sidebar__icon">&#128200;</span> 成績アップ事例
+      </div>
+      <div class="sidebar__section-label">その他</div>
+      <div class="sidebar__item" onclick="switchPanel('media', this)">
+        <span class="sidebar__icon">&#128247;</span> メディア
+      </div>
+      <div class="sidebar__item" onclick="switchPanel('settings', this)">
+        <span class="sidebar__icon">&#9881;</span> サイト設定
+      </div>
+    </nav>
+    <div class="sidebar__footer">
+      <a href="../">&#8592; サイトに戻る</a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="demo-banner">&#128161; これは管理画面のデモイメージです。実際にはCMSログイン後に各項目の投稿・編集ができます。</div>
+    <div class="topbar">
+      <h1 class="topbar__title" id="topbarTitle">ブログ記事</h1>
+      <div class="topbar__user"><div class="topbar__avatar">管</div> 管理者</div>
+    </div>
+
+    <div class="content">
+
+      <!-- ===== 1. ブログ記事 ===== -->
+      <div class="panel is-active" id="panel-blog">
+        <div class="list-view" id="blogList">
+          <div class="list-header">
+            <span class="list-header__count">3件の記事</span>
+            <button class="btn-new" onclick="showBlogEdit()">&#43; 新規作成</button>
+          </div>
+          <div class="post-list">
+            <div class="post-item" onclick="showBlogEdit()">
+              <span class="post-item__title">中間テスト対策！効率的な勉強法5選</span>
+              <span class="post-item__category">学習法</span>
+              <span class="post-item__date">2026/03/10</span>
+              <span class="post-item__status post-item__status--published">公開中</span>
+            </div>
+            <div class="post-item" onclick="showBlogEdit()">
+              <span class="post-item__title">春期講習のお知らせ</span>
+              <span class="post-item__category">教室ニュース</span>
+              <span class="post-item__date">2026/03/01</span>
+              <span class="post-item__status post-item__status--published">公開中</span>
+            </div>
+            <div class="post-item" onclick="showBlogEdit()">
+              <span class="post-item__title">2026年度 高校入試の傾向と対策</span>
+              <span class="post-item__category">受験情報</span>
+              <span class="post-item__date">2026/02/15</span>
+              <span class="post-item__status post-item__status--draft">下書き</span>
+            </div>
+          </div>
+        </div>
+        <div class="edit-view" id="blogEdit">
+          <div class="edit-header">
+            <button class="edit-header__back" onclick="hideBlogEdit()">&#8592; 記事一覧に戻る</button>
+            <div class="edit-header__actions">
+              <button class="btn-draft">下書き保存</button>
+              <button class="btn-save">公開する</button>
+            </div>
+          </div>
+          <div class="edit-form">
+            <div class="form-group">
+              <label class="form-label">タイトル</label>
+              <input type="text" class="form-input" value="中間テスト対策！効率的な勉強法5選" />
+            </div>
+            <div class="form-group" style="display:flex; gap:24px; flex-wrap:wrap;">
+              <div><label class="form-label">カテゴリ</label><select class="form-select"><option selected>学習法</option><option>教室ニュース</option><option>受験情報</option><option>イベント</option></select></div>
+              <div><label class="form-label">公開日</label><input type="date" class="form-select" value="2026-03-10" /></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">アイキャッチ画像</label>
+              <div class="form-image-upload"><div class="form-image-upload__icon">&#128247;</div>画像をドラッグ＆ドロップ、またはクリックしてアップロード</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">本文（マークダウン）</label>
+              <div class="editor-toolbar">
+                <button class="toolbar-btn" title="太字"><b>B</b></button>
+                <button class="toolbar-btn" title="斜体"><i>I</i></button>
+                <button class="toolbar-btn" title="リンク">&#128279;</button>
+                <div class="toolbar-sep"></div>
+                <button class="toolbar-btn" title="見出し">H</button>
+                <button class="toolbar-btn" title="リスト">&#9776;</button>
+                <button class="toolbar-btn" title="画像">&#128247;</button>
+              </div>
+              <textarea class="form-textarea">## 中間テスト対策のポイント
+
+中間テストまであと2週間。効率的な勉強法で点数アップを目指しましょう！
+
+### 1. 計画を立てる
+まずはテスト範囲を確認し、科目ごとの学習計画を立てましょう。
+
+### 2. 教科書の音読
+教科書を声に出して読むことで、記憶の定着率が大幅にアップします。
+
+### 3. 問題集を繰り返す
+同じ問題集を3回繰り返すことが、最も効果的な勉強法です。</textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 2. 料金表 ===== -->
+      <div class="panel" id="panel-price">
+        <div class="list-header">
+          <span class="list-header__count">コース別料金表</span>
+          <button class="btn-save">変更を保存</button>
+        </div>
+        <table class="editable-table">
+          <thead>
+            <tr><th>学年</th><th>週1回（月4回）</th><th>週2回（月8回）</th><th>週3回（月12回）</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr><td><input value="小学4〜6年" /></td><td><input value="5,500円" /></td><td><input value="9,000円" /></td><td><input value="12,000円" /></td><td><button class="btn-delete-row">&#10005;</button></td></tr>
+            <tr><td><input value="中学1年" /></td><td><input value="—" /></td><td><input value="19,000円" /></td><td><input value="26,000円" /></td><td><button class="btn-delete-row">&#10005;</button></td></tr>
+            <tr><td><input value="中学2年" /></td><td><input value="—" /></td><td><input value="19,000円" /></td><td><input value="26,000円" /></td><td><button class="btn-delete-row">&#10005;</button></td></tr>
+            <tr><td><input value="中学3年" /></td><td><input value="—" /></td><td><input value="22,000円" /></td><td><input value="28,000円" /></td><td><button class="btn-delete-row">&#10005;</button></td></tr>
+            <tr><td><input value="高校生" /></td><td><input value="—" /></td><td><input value="25,000円" /></td><td><input value="30,000円" /></td><td><button class="btn-delete-row">&#10005;</button></td></tr>
+          </tbody>
+        </table>
+        <button class="btn-add-row">&#43; 行を追加</button>
+
+        <div style="margin-top:32px;">
+          <div class="form-group">
+            <label class="form-label">料金の注記</label>
+            <textarea class="form-textarea" style="min-height:120px;">※1コマ：100分（小学生は50分）
+※入会金：22,000円（税込）
+※システム管理費：2,970円/月
+※教材費は別途
+※金額はすべて税込です</textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 3. 合格実績 ===== -->
+      <div class="panel" id="panel-results">
+        <div class="list-header">
+          <span class="list-header__count">合格実績の管理</span>
+          <button class="btn-save">変更を保存</button>
+        </div>
+        <div class="edit-form">
+          <div class="form-group">
+            <label class="form-label">リード文</label>
+            <input type="text" class="form-input" value="指導歴15年のプロ講師が直接指導。毎年多くの生徒が志望校に合格しています。" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">国公立高校</label>
+            <textarea class="form-textarea" style="min-height:80px;">春日丘高校・豊中高校・箕面高校・千里高校・池田高校 他</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">私立高校</label>
+            <textarea class="form-textarea" style="min-height:80px;">関西大学第一高校・大阪桐蔭高校・近畿大学附属高校・常翔学園高校 他</textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">大学合格実績（任意）</label>
+            <textarea class="form-textarea" style="min-height:80px;"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 4. 成績アップ事例 ===== -->
+      <div class="panel" id="panel-scores">
+        <div class="list-header">
+          <span class="list-header__count">6件の事例</span>
+          <div style="display:flex; gap:8px;">
+            <button class="btn-new">&#43; 事例を追加</button>
+            <button class="btn-save">変更を保存</button>
+          </div>
+        </div>
+        <div class="score-grid">
+          <div class="score-edit-card">
+            <div class="score-edit-card__row"><label>生徒</label><input value="A中2年" /></div>
+            <div class="score-edit-card__row"><label>科目</label><select><option selected>5教科</option><option>英語</option><option>数学</option><option>国語</option><option>理科</option><option>社会</option></select></div>
+            <div class="score-edit-card__row"><label>UP点</label><input value="62" style="width:80px;" /><span style="font-size:0.875rem;color:var(--text-light);">点UP</span></div>
+          </div>
+          <div class="score-edit-card">
+            <div class="score-edit-card__row"><label>生徒</label><input value="B中3年" /></div>
+            <div class="score-edit-card__row"><label>科目</label><select><option>5教科</option><option selected>英語</option><option>数学</option><option>国語</option><option>理科</option><option>社会</option></select></div>
+            <div class="score-edit-card__row"><label>UP点</label><input value="35" style="width:80px;" /><span style="font-size:0.875rem;color:var(--text-light);">点UP</span></div>
+          </div>
+          <div class="score-edit-card">
+            <div class="score-edit-card__row"><label>生徒</label><input value="C中1年" /></div>
+            <div class="score-edit-card__row"><label>科目</label><select><option>5教科</option><option>英語</option><option selected>数学</option><option>国語</option><option>理科</option><option>社会</option></select></div>
+            <div class="score-edit-card__row"><label>UP点</label><input value="28" style="width:80px;" /><span style="font-size:0.875rem;color:var(--text-light);">点UP</span></div>
+          </div>
+          <div class="score-edit-card">
+            <div class="score-edit-card__row"><label>生徒</label><input value="A中2年" /></div>
+            <div class="score-edit-card__row"><label>科目</label><select><option>5教科</option><option>英語</option><option>数学</option><option selected>国語</option><option>理科</option><option>社会</option></select></div>
+            <div class="score-edit-card__row"><label>UP点</label><input value="22" style="width:80px;" /><span style="font-size:0.875rem;color:var(--text-light);">点UP</span></div>
+          </div>
+          <div class="score-edit-card">
+            <div class="score-edit-card__row"><label>生徒</label><input value="B中3年" /></div>
+            <div class="score-edit-card__row"><label>科目</label><select><option>5教科</option><option>英語</option><option>数学</option><option>国語</option><option selected>理科</option><option>社会</option></select></div>
+            <div class="score-edit-card__row"><label>UP点</label><input value="31" style="width:80px;" /><span style="font-size:0.875rem;color:var(--text-light);">点UP</span></div>
+          </div>
+          <div class="score-edit-card">
+            <div class="score-edit-card__row"><label>生徒</label><input value="C中2年" /></div>
+            <div class="score-edit-card__row"><label>科目</label><select><option>5教科</option><option>英語</option><option>数学</option><option>国語</option><option>理科</option><option selected>社会</option></select></div>
+            <div class="score-edit-card__row"><label>UP点</label><input value="19" style="width:80px;" /><span style="font-size:0.875rem;color:var(--text-light);">点UP</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 5. メディア ===== -->
+      <div class="panel" id="panel-media">
+        <div class="list-header">
+          <span class="list-header__count">アップロード済み画像</span>
+          <button class="btn-new">&#43; アップロード</button>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap:12px;">
+          <div style="aspect-ratio:1; background: var(--border); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; color:var(--text-light); font-size:0.8125rem;">hero-main.jpg</div>
+          <div style="aspect-ratio:1; background: var(--border); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; color:var(--text-light); font-size:0.8125rem;">classroom-01.jpg</div>
+          <div style="aspect-ratio:1; background: var(--border); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; color:var(--text-light); font-size:0.8125rem;">classroom-02.jpg</div>
+          <div style="aspect-ratio:1; background: var(--border); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; color:var(--text-light); font-size:0.8125rem;">teacher-01.jpg</div>
+          <div style="aspect-ratio:1; background: var(--border); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; color:var(--text-light); font-size:0.8125rem;">blog-thumb-01.jpg</div>
+        </div>
+      </div>
+
+      <!-- ===== 6. サイト設定 ===== -->
+      <div class="panel" id="panel-settings">
+        <div class="list-header">
+          <span class="list-header__count">基本設定</span>
+          <button class="btn-save">変更を保存</button>
+        </div>
+        <div class="edit-form">
+          <div class="form-group"><label class="form-label">塾名</label><input type="text" class="form-input" value="まなび学習塾" /></div>
+          <div class="form-group"><label class="form-label">キャッチコピー</label><input type="text" class="form-input" value="一人ひとりの「わかった！」を大切に。" /></div>
+          <div class="form-group"><label class="form-label">電話番号</label><input type="text" class="form-input" value="06-1234-5678" /></div>
+          <div class="form-group"><label class="form-label">住所</label><input type="text" class="form-input" value="〒541-0053 大阪府大阪市中央区本町3-1-2 本町ビル2F" /></div>
+          <div class="form-group" style="display:flex; gap:24px; flex-wrap:wrap;">
+            <div style="flex:1; min-width:200px;"><label class="form-label">営業時間</label><input type="text" class="form-input" value="平日 14:00〜22:00 / 土曜 10:00〜18:00" /></div>
+            <div style="flex:1; min-width:200px;"><label class="form-label">定休日</label><input type="text" class="form-input" value="日曜・祝日" /></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function switchPanel(name, el) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('is-active'));
+      document.getElementById('panel-' + name).classList.add('is-active');
+      document.querySelectorAll('.sidebar__item').forEach(i => i.classList.remove('is-active'));
+      el.classList.add('is-active');
+      const titles = { blog:'ブログ記事', price:'料金表', results:'合格実績', scores:'成績アップ事例', media:'メディア', settings:'サイト設定' };
+      document.getElementById('topbarTitle').textContent = titles[name] || name;
+      hideBlogEdit();
+    }
+    function showBlogEdit() {
+      document.getElementById('blogList').classList.add('is-hidden');
+      document.getElementById('blogEdit').classList.add('is-active');
+    }
+    function hideBlogEdit() {
+      document.getElementById('blogList').classList.remove('is-hidden');
+      document.getElementById('blogEdit').classList.remove('is-active');
+    }
+  </script>
+</body>
+</html>
