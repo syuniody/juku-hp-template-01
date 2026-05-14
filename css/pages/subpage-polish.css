@@ -1,0 +1,1224 @@
+/* ===================================
+   Subpage polish — 下層ページ共通の仕上げ
+   トップページと同じ、白ベース＋濃い青のクリーンな印象へ統一
+   =================================== */
+
+.page-header {
+  background:
+    linear-gradient(90deg, rgba(0, 80, 178, 0.96), rgba(0, 68, 128, 0.92)),
+    url("../../images/original-lp/mainSlide3-pc.jpg") center / cover no-repeat;
+  color: #fff;
+  padding: 64px 0 58px;
+  border-bottom: 10px solid #ff7b1d;
+}
+
+.page-header {
+  display: none !important;
+}
+
+.page-header__breadcrumb,
+.page-header__breadcrumb a {
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 700;
+}
+
+.page-header__title {
+  color: #fff;
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.18;
+  letter-spacing: 0;
+}
+
+.section-title__label {
+  display: inline-block;
+  color: #0050b2;
+  font-size: 0.92rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.section-title__heading {
+  color: #111;
+  font-size: clamp(2rem, 3.3vw, 3rem);
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.section--bg {
+  background: #f2f8ff;
+}
+
+.btn--primary,
+.mobile-menu__cta,
+.cta-bar__button {
+  background: #0050b2;
+  border-color: #0050b2;
+}
+
+.btn--primary:hover {
+  background: #003e8a;
+  border-color: #003e8a;
+}
+
+.contact-cta {
+  background: #0050b2;
+}
+
+/* Courses */
+.grade-picker {
+  gap: 10px;
+}
+
+.grade-picker__btn {
+  border: 2px solid #0050b2;
+  border-radius: 0;
+  color: #0050b2;
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.grade-picker__btn.is-active,
+.grade-picker__btn:hover {
+  background: #0050b2;
+  color: #fff;
+}
+
+.course-guide .section-title + p,
+.section-title + p {
+  color: #111 !important;
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.9;
+}
+
+.guide-block,
+.route-card,
+.reason-card,
+.class-card,
+.course-card,
+.price-card {
+  border-radius: 0 !important;
+}
+
+.route-card,
+.reason-card,
+.class-card,
+.course-card,
+.price-card {
+  border: 3px solid #0050b2 !important;
+  background: #fff !important;
+  box-shadow: 8px 8px 0 #e8f2ff !important;
+}
+
+.guide-block__title,
+.route-card__title,
+.reason-section__title,
+.class-tier__title,
+.class-card__name,
+.course-card__title,
+.price-card__title {
+  color: #004480 !important;
+  font-weight: 900 !important;
+}
+
+.guide-block__lead,
+.route-card__target,
+.route-card__item-desc,
+.class-card__goal,
+.class-card__detail,
+.reason-card__body,
+.course-card__text,
+.price-card__text {
+  color: #111 !important;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.85;
+}
+
+.route-card__badge,
+.reason-card__num,
+.class-card__rank {
+  background: #0050b2 !important;
+  color: #fff !important;
+  border-radius: 0 !important;
+  font-weight: 900 !important;
+}
+
+.idea-section {
+  background: #fff !important;
+  border: 3px solid #0050b2 !important;
+  border-radius: 0 !important;
+  box-shadow: 8px 8px 0 #e8f2ff !important;
+  margin-top: 34px !important;
+  padding: 30px !important;
+}
+
+.idea-section__title {
+  border-bottom: 3px solid #0050b2 !important;
+  color: #004480 !important;
+  font-size: 1.48rem !important;
+  font-weight: 900 !important;
+  line-height: 1.45 !important;
+  margin-bottom: 18px !important;
+  padding-bottom: 12px !important;
+}
+
+.idea-section__lead {
+  background: #f2f8ff !important;
+  border-left: 8px solid #ff7b1d !important;
+  border-radius: 0 !important;
+  color: #111 !important;
+  font-size: 1.06rem !important;
+  font-weight: 700 !important;
+  line-height: 1.95 !important;
+  margin-bottom: 22px !important;
+  padding: 18px 20px !important;
+}
+
+.idea-list {
+  gap: 18px !important;
+}
+
+.idea-item {
+  background: #fff !important;
+  border: 2px solid #b8d8f0 !important;
+  border-left: 8px solid #0050b2 !important;
+  border-radius: 0 !important;
+  gap: 16px !important;
+  padding: 20px !important;
+}
+
+.idea-item__num {
+  background: #0050b2 !important;
+  color: #fff !important;
+  flex: 0 0 38px !important;
+  font-size: 1rem !important;
+  font-weight: 900 !important;
+  height: 38px !important;
+  line-height: 38px !important;
+  text-align: center;
+}
+
+.idea-item__title {
+  color: #004480 !important;
+  font-size: 1.08rem !important;
+  font-weight: 900 !important;
+  line-height: 1.55 !important;
+}
+
+.idea-item__body p {
+  color: #111 !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  line-height: 1.85 !important;
+}
+
+.guide-note,
+.support-note {
+  background: #fff !important;
+  border: 3px solid #0050b2 !important;
+  border-radius: 0 !important;
+  box-shadow: 8px 8px 0 #e8f2ff !important;
+  margin-top: 28px !important;
+  padding: 24px !important;
+}
+
+.guide-note__title,
+.support-note__title {
+  color: #004480 !important;
+  font-size: 1.28rem !important;
+  font-weight: 900 !important;
+  line-height: 1.45 !important;
+  margin: 0 0 12px !important;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #d9ebff;
+}
+
+.guide-note__text {
+  color: #111 !important;
+  font-size: 1.04rem !important;
+  font-weight: 700 !important;
+  line-height: 1.9 !important;
+  margin: 0 !important;
+}
+
+.support-note__grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.support-note__item {
+  background: #f6fbff;
+  border: 2px solid #b8d8f0;
+  padding: 16px;
+}
+
+.support-note__label {
+  background: #0050b2;
+  color: #fff;
+  display: inline-block;
+  font-size: 0.86rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+}
+
+.support-note__item p {
+  color: #111;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.route-card__badge,
+.lecture-card__badge {
+  background: #0050b2 !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+  font-size: 0.96rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.04em;
+  padding: 6px 12px !important;
+}
+
+.route-card__features,
+.route-card__item-title,
+.lecture-card__target {
+  color: #004480 !important;
+  font-size: 1.02rem !important;
+  font-weight: 900 !important;
+  line-height: 1.65 !important;
+}
+
+.route-card__item-desc,
+.reason-card__body,
+.class-card__goal,
+.class-card__detail,
+.lecture-card__body {
+  color: #111 !important;
+  font-size: 1.04rem !important;
+  font-weight: 600 !important;
+  line-height: 1.85 !important;
+}
+
+.reason-card__title,
+.lecture-card__title {
+  color: #004480 !important;
+  font-size: 1.22rem !important;
+  font-weight: 900 !important;
+  line-height: 1.5 !important;
+}
+
+.class-card__name {
+  color: #004480 !important;
+  font-size: 1.18rem !important;
+  font-weight: 900 !important;
+  line-height: 1.45 !important;
+}
+
+.class-card__rank {
+  font-size: 1rem !important;
+  height: 40px !important;
+  line-height: 40px !important;
+  min-width: 40px !important;
+  text-align: center;
+}
+
+.lecture-card,
+.lectures-section__note {
+  background: #fff !important;
+  border: 3px solid #0050b2 !important;
+  border-radius: 0 !important;
+  box-shadow: 8px 8px 0 #e8f2ff !important;
+}
+
+.lecture-card {
+  padding: 26px !important;
+}
+
+.lecture-card--highlight {
+  border-color: #0050b2 !important;
+}
+
+.lectures-section__note {
+  color: #111 !important;
+  font-size: 1.04rem !important;
+  font-weight: 700 !important;
+  line-height: 1.9 !important;
+  padding: 22px !important;
+}
+
+/* Courses: monthly fee panels */
+#price-panels {
+  background: #f2f8ff !important;
+  border-top: 8px solid #0050b2;
+}
+
+.price-panels__title {
+  margin-bottom: 10px;
+}
+
+.price-panels__lead {
+  color: #111;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.9;
+  margin: 0 auto 30px;
+  max-width: 840px;
+  text-align: center;
+}
+
+.grade-panel {
+  max-width: 1120px;
+  margin: 0 auto 46px;
+}
+
+.grade-panel__title {
+  background: #fff !important;
+  border: 3px solid #0050b2 !important;
+  border-left: 12px solid #ff7b1d !important;
+  box-shadow: 8px 8px 0 #e8f2ff !important;
+  color: #004480 !important;
+  font-size: clamp(1.5rem, 2.5vw, 2.15rem) !important;
+  font-weight: 900 !important;
+  line-height: 1.35 !important;
+  margin: 0 0 26px !important;
+  padding: 18px 22px !important;
+}
+
+.grade-callout,
+.grade-strengths {
+  background: #fff !important;
+  border: 3px solid #0050b2 !important;
+  border-radius: 0 !important;
+  box-shadow: 8px 8px 0 #e8f2ff !important;
+}
+
+.grade-callout__title,
+.grade-strengths__title {
+  color: #004480 !important;
+  font-size: 1.28rem !important;
+  font-weight: 900 !important;
+  line-height: 1.6 !important;
+}
+
+.grade-callout__body,
+.grade-strengths__item p {
+  color: #111 !important;
+  font-size: 1.04rem !important;
+  font-weight: 600 !important;
+  line-height: 1.9 !important;
+}
+
+.grade-strengths__item strong {
+  color: #004480 !important;
+  font-size: 1.08rem !important;
+  font-weight: 900 !important;
+}
+
+#price-panels .course-card {
+  overflow-x: auto;
+  padding: 28px !important;
+}
+
+#price-panels .course-card__head {
+  border-bottom: 2px solid #d9ebff;
+  margin-bottom: 18px !important;
+  padding-bottom: 16px;
+}
+
+#price-panels .course-card__badge {
+  background: #0050b2 !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+  display: inline-block;
+  font-size: 0.9rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px !important;
+  padding: 6px 12px !important;
+}
+
+#price-panels .course-card__title {
+  color: #004480 !important;
+  font-size: 1.45rem !important;
+  font-weight: 900 !important;
+  line-height: 1.45;
+}
+
+#price-panels .course-card__lead {
+  color: #111 !important;
+  font-size: 1.04rem !important;
+  font-weight: 600 !important;
+  line-height: 1.85 !important;
+}
+
+#price-panels .course-card__table {
+  border-collapse: collapse !important;
+  font-size: 1.05rem !important;
+  min-width: 560px;
+  width: 100% !important;
+}
+
+#price-panels .course-card__table th,
+#price-panels .course-card__table td {
+  border: 1px solid #b8d8f0 !important;
+  color: #111 !important;
+  font-size: 1.05rem !important;
+  line-height: 1.7 !important;
+  padding: 14px 16px !important;
+  text-align: left !important;
+  vertical-align: top;
+}
+
+#price-panels .course-card__table thead th {
+  background: #0050b2 !important;
+  color: #fff !important;
+  font-weight: 900 !important;
+}
+
+#price-panels .course-card__table tbody th,
+#price-panels .course-card__table tbody td:first-child {
+  background: #f6fbff !important;
+  color: #004480 !important;
+  font-weight: 900 !important;
+}
+
+#price-panels .course-card__table tbody td:last-child {
+  color: #004480 !important;
+  font-size: 1.16rem !important;
+  font-weight: 900 !important;
+  white-space: nowrap;
+}
+
+#price-panels .course-card__note {
+  color: #111 !important;
+  font-size: 0.98rem !important;
+  font-weight: 700 !important;
+  line-height: 1.75 !important;
+  margin-top: 14px !important;
+}
+
+.fee-notes {
+  background: #fff !important;
+  border: 3px solid #0050b2 !important;
+  border-radius: 0 !important;
+  box-shadow: 8px 8px 0 #e8f2ff !important;
+  margin-top: 34px !important;
+  padding: 30px !important;
+}
+
+.fee-notes__grid {
+  gap: 18px !important;
+  margin-bottom: 20px !important;
+}
+
+.fee-notes__item {
+  align-items: flex-start;
+  background: #f6fbff !important;
+  border: 2px solid #b8d8f0;
+  border-radius: 0 !important;
+  display: flex;
+  gap: 14px !important;
+  padding: 18px !important;
+}
+
+.fee-notes__label {
+  background: #0050b2;
+  color: #fff !important;
+  display: inline-block;
+  flex: 0 0 auto;
+  font-size: 1rem !important;
+  font-weight: 900 !important;
+  line-height: 1.45;
+  min-width: 122px;
+  padding: 6px 10px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.fee-notes__value {
+  color: #111 !important;
+  font-size: 1.08rem !important;
+  font-weight: 800 !important;
+  line-height: 1.75 !important;
+}
+
+.fee-notes__value small {
+  color: #111 !important;
+  display: inline-block;
+  font-size: 0.98rem !important;
+  font-weight: 700 !important;
+  line-height: 1.75 !important;
+  margin-top: 4px;
+}
+
+.fee-notes__note {
+  background: #f2f8ff;
+  border-left: 8px solid #ff7b1d;
+  color: #111 !important;
+  font-size: 1.04rem !important;
+  font-weight: 700 !important;
+  line-height: 1.8 !important;
+  margin: 0 !important;
+  padding: 14px 18px;
+}
+
+/* Success */
+.success-hero {
+  background:
+    linear-gradient(90deg, rgba(0, 80, 178, 0.96), rgba(0, 68, 128, 0.9)),
+    url("../../images/original-lp/mainSlide-pc.jpg") center / cover no-repeat !important;
+  color: #fff;
+  padding: 76px 0 64px !important;
+  border-bottom: 10px solid #ff7b1d;
+}
+
+.success-hero__label,
+.success-hero__title,
+.success-hero__lead {
+  color: #fff !important;
+}
+
+.success-hero__title {
+  font-size: clamp(2.5rem, 5vw, 4rem) !important;
+  font-weight: 900 !important;
+}
+
+.success-hero__lead {
+  font-size: 1.12rem;
+  font-weight: 600;
+}
+
+.year-nav span,
+.year-nav a,
+.success-filter {
+  border-radius: 0 !important;
+}
+
+.year-nav span,
+.success-filter__button.is-active {
+  background: #0050b2 !important;
+  color: #fff !important;
+}
+
+.year-nav a,
+.success-filter {
+  background: #fff !important;
+}
+
+.success-card {
+  border-radius: 0 !important;
+  border: 3px solid #0050b2 !important;
+  border-top-width: 8px !important;
+  box-shadow: 8px 8px 0 #e8f2ff !important;
+}
+
+.success-card__school,
+.success-card__title {
+  color: #004480 !important;
+  font-weight: 900 !important;
+}
+
+.success-card__body {
+  color: #111 !important;
+  font-size: 1.04rem;
+  font-weight: 600;
+}
+
+.success-card__emphasis {
+  color: #111 !important;
+  font-weight: 900;
+  background: linear-gradient(transparent 64%, #d9ebff 64%);
+}
+
+/* Teachers */
+.principal,
+.teacher-card,
+.promise-item,
+.voice-item {
+  border-radius: 0 !important;
+  border: 3px solid #0050b2 !important;
+  background: #fff !important;
+  box-shadow: 8px 8px 0 #e8f2ff !important;
+}
+
+.principal__name,
+.teacher-card__name,
+.promise-item__title,
+.voice-item__title {
+  color: #004480 !important;
+  font-weight: 900 !important;
+}
+
+.principal__role,
+.teacher-card__subject,
+.voice-item__grade {
+  color: #0050b2 !important;
+  font-weight: 900 !important;
+}
+
+.principal__bio,
+.teacher-card__message,
+.promise-item__text,
+.voice-item__text {
+  color: #111 !important;
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.9;
+}
+
+.promise-item__number {
+  background: #0050b2 !important;
+  color: #fff !important;
+  border-radius: 0 !important;
+}
+
+/* Access */
+.gallery-grid__item,
+.access__map,
+.access__info,
+.directions-list {
+  border-radius: 0 !important;
+  border: 3px solid #0050b2 !important;
+  background: #fff !important;
+  box-shadow: 8px 8px 0 #e8f2ff !important;
+}
+
+.access__info {
+  padding: 24px 32px !important;
+}
+
+.access__info-item {
+  grid-template-columns: 140px minmax(0, 1fr) !important;
+  gap: 28px !important;
+}
+
+.gallery-grid__item figcaption,
+.access__info-label,
+.directions-list li {
+  color: #111 !important;
+  font-weight: 800 !important;
+}
+
+.access__info-value {
+  color: #111 !important;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.area-schools__lead {
+  max-width: 860px;
+  margin: 0 auto 30px;
+  color: #111 !important;
+  font-size: 1.14rem;
+  font-weight: 700;
+  line-height: 1.95;
+  text-align: center;
+}
+
+.area-schools__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.area-school-card {
+  background: #fff !important;
+  border: 3px solid #0050b2 !important;
+  border-radius: 0 !important;
+  box-shadow: 8px 8px 0 #e8f2ff !important;
+  padding: 28px;
+}
+
+.area-school-card--primary {
+  border-top: 10px solid #ff7b1d !important;
+}
+
+.area-school-card__label {
+  display: inline-block;
+  background: #0050b2;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  margin-bottom: 14px;
+  padding: 6px 12px;
+  text-transform: uppercase;
+}
+
+.area-school-card__title {
+  color: #004480 !important;
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 18px;
+}
+
+.area-school-card__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+}
+
+.area-school-card__list li {
+  background: #f2f8ff;
+  border: 2px solid #b8d8f0;
+  color: #111;
+  font-size: 1.02rem;
+  font-weight: 800;
+  line-height: 1.4;
+  padding: 8px 12px;
+}
+
+.area-school-card__note {
+  border-top: 2px solid #d9ebff;
+  color: #004480;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.75;
+  margin: 0;
+  padding-top: 14px;
+}
+
+.classroom-slider {
+  background: #fff;
+  border: 3px solid #0050b2;
+  border-radius: 0;
+  box-shadow: 10px 10px 0 #e8f2ff;
+  margin: 0 auto;
+  max-width: 1040px;
+  overflow: hidden;
+  position: relative;
+}
+
+.classroom-slider .slider__track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.classroom-slider__slide {
+  background: #fff;
+  flex: 0 0 100%;
+  margin: 0;
+  min-width: 100%;
+}
+
+.classroom-slider__slide img {
+  aspect-ratio: 16 / 9;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.classroom-slider__slide figcaption {
+  background: #fff;
+  border-top: 3px solid #0050b2;
+  color: #004480;
+  font-size: 1.18rem;
+  font-weight: 900;
+  line-height: 1.6;
+  padding: 16px 24px;
+  text-align: center;
+}
+
+.classroom-slider .slider__prev,
+.classroom-slider .slider__next {
+  align-items: center;
+  background: #0050b2;
+  border: 3px solid #fff;
+  border-radius: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-size: 2rem;
+  font-weight: 900;
+  height: 54px;
+  justify-content: center;
+  line-height: 1;
+  position: absolute;
+  top: calc(50% - 28px);
+  transform: translateY(-50%);
+  width: 54px;
+  z-index: 3;
+}
+
+.classroom-slider .slider__prev {
+  left: 18px;
+}
+
+.classroom-slider .slider__next {
+  right: 18px;
+}
+
+.classroom-slider .slider__prev:hover,
+.classroom-slider .slider__next:hover {
+  background: #003e8a;
+}
+
+.classroom-slider .slider__dots {
+  align-items: center;
+  background: #fff;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 0 0 18px;
+}
+
+.classroom-slider .slider__dot {
+  background: #b8d8f0;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  height: 12px;
+  padding: 0;
+  width: 12px;
+}
+
+.classroom-slider .slider__dot.is-active {
+  background: #0050b2;
+  transform: scale(1.25);
+}
+
+/* Contact */
+.contact-form,
+.contact-methods__column,
+.faq-item {
+  border-radius: 0 !important;
+  border: 3px solid #0050b2 !important;
+  background: #fff !important;
+  box-shadow: 8px 8px 0 #e8f2ff !important;
+}
+
+.contact-intro,
+.contact-methods__text,
+.faq-item__answer {
+  color: #111 !important;
+  font-size: 1.04rem;
+  font-weight: 600;
+  line-height: 1.9;
+}
+
+.form-group__label,
+.contact-methods__title,
+.faq-item__question {
+  color: #004480 !important;
+  font-weight: 900 !important;
+}
+
+.form-group__input {
+  border-radius: 0 !important;
+  border: 2px solid #b8d8f0 !important;
+}
+
+.form-group__input:focus {
+  border-color: #0050b2 !important;
+  box-shadow: 0 0 0 4px rgba(0, 80, 178, 0.12) !important;
+}
+
+/* Blog */
+.blog-category {
+  border: 2px solid #0050b2 !important;
+  border-radius: 0 !important;
+  color: #0050b2 !important;
+  font-size: 1rem !important;
+  font-weight: 900 !important;
+  padding: 10px 18px !important;
+}
+
+.blog-category.is-active,
+.blog-category:hover {
+  background: #0050b2 !important;
+  color: #fff !important;
+}
+
+.blog-card {
+  border-radius: 0 !important;
+  border: 3px solid #0050b2 !important;
+  box-shadow: 8px 8px 0 #e8f2ff !important;
+}
+
+.blog-card .card__title {
+  color: #004480 !important;
+  font-size: 1.28rem !important;
+  font-weight: 900 !important;
+  line-height: 1.55 !important;
+}
+
+.blog-card .card__text {
+  color: #111 !important;
+  font-size: 1.05rem !important;
+  font-weight: 700;
+  line-height: 1.9;
+}
+
+.blog-card .card__tag {
+  background: #0050b2 !important;
+  color: #fff !important;
+  border-radius: 0 !important;
+  font-size: 0.96rem !important;
+  font-weight: 900 !important;
+  padding: 5px 12px !important;
+}
+
+.blog-card .card__date {
+  color: #004480 !important;
+  font-size: 1rem !important;
+  font-weight: 900 !important;
+  line-height: 1.6 !important;
+}
+
+.article__header,
+.article__body,
+.article__eyecatch,
+.related-posts .card {
+  border-radius: 0 !important;
+}
+
+.article__header,
+.article__body {
+  border: 3px solid #0050b2 !important;
+  background: #fff !important;
+  box-shadow: 8px 8px 0 #e8f2ff !important;
+}
+
+.article__title {
+  color: #004480 !important;
+  font-weight: 900 !important;
+}
+
+.article__date,
+.article__category {
+  background: #0050b2 !important;
+  color: #fff !important;
+  border-radius: 0 !important;
+  font-size: 0.98rem !important;
+  font-weight: 900 !important;
+  padding: 6px 12px !important;
+}
+
+.article__body,
+.article-body {
+  color: #111 !important;
+  font-size: 1.12rem !important;
+  font-weight: 650;
+  line-height: 2;
+}
+
+.article__body p,
+.article__body li,
+.article-body p,
+.article-body li {
+  color: #111 !important;
+  font-size: 1.12rem !important;
+  font-weight: 650;
+  line-height: 2 !important;
+}
+
+.article__body h2,
+.article-body h2 {
+  color: #004480 !important;
+  font-size: 1.72rem !important;
+  font-weight: 900 !important;
+  line-height: 1.5 !important;
+}
+
+.article__body h3,
+.article-body h3 {
+  color: #004480 !important;
+  font-size: 1.42rem !important;
+  font-weight: 900 !important;
+  line-height: 1.55 !important;
+}
+
+.article__body blockquote,
+.article-body blockquote {
+  background: #f2f8ff !important;
+  border-left: 8px solid #ff7b1d !important;
+  border-radius: 0 !important;
+  color: #111 !important;
+  font-size: 1.08rem !important;
+  font-weight: 700;
+  line-height: 1.9 !important;
+}
+
+.article__body table,
+.article-body table {
+  font-size: 1.05rem !important;
+}
+
+.blog-empty {
+  color: #004480 !important;
+  font-size: 1.08rem !important;
+  font-weight: 900 !important;
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    padding: 48px 0 42px;
+  }
+
+  .page-header__title {
+    font-size: 2.35rem;
+  }
+
+  .route-card,
+  .reason-card,
+  .class-card,
+  .lecture-card,
+  .lectures-section__note,
+  .success-card,
+  .principal,
+  .teacher-card,
+  .promise-item,
+    .gallery-grid__item,
+    .access__map,
+    .access__info,
+    .area-school-card,
+    .classroom-slider,
+    .contact-form,
+  .contact-methods__column,
+  .faq-item,
+  .blog-card {
+    box-shadow: 5px 5px 0 #e8f2ff !important;
+  }
+
+  .access__info {
+    padding: 18px 20px !important;
+  }
+
+  .access__info-item {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+  }
+
+  .price-panels__lead {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .grade-panel__title {
+    box-shadow: 5px 5px 0 #e8f2ff !important;
+    font-size: 1.34rem !important;
+    padding: 16px 18px !important;
+  }
+
+  .grade-callout,
+  .grade-strengths,
+  .guide-note,
+  .support-note,
+  #price-panels .course-card {
+    box-shadow: 5px 5px 0 #e8f2ff !important;
+  }
+
+  .support-note__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .route-card__features,
+  .route-card__item-title,
+  .lecture-card__target,
+  .route-card__item-desc,
+  .reason-card__body,
+  .class-card__goal,
+  .class-card__detail,
+  .lecture-card__body,
+  .blog-card .card__text,
+  .article__body p,
+  .article__body li,
+  .article-body p,
+  .article-body li {
+    font-size: 1rem !important;
+  }
+
+  .reason-card__title,
+  .lecture-card__title,
+  .class-card__name,
+  .blog-card .card__title {
+    font-size: 1.12rem !important;
+  }
+
+  #price-panels .course-card {
+    padding: 22px !important;
+  }
+
+  #price-panels .course-card__title {
+    font-size: 1.26rem !important;
+  }
+
+  #price-panels .course-card__table th,
+  #price-panels .course-card__table td {
+    font-size: 0.98rem !important;
+    padding: 12px 14px !important;
+  }
+
+  .fee-notes {
+    box-shadow: 5px 5px 0 #e8f2ff !important;
+    padding: 22px !important;
+  }
+
+  .fee-notes__grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .fee-notes__item {
+    display: block;
+  }
+
+  .fee-notes__label {
+    margin-bottom: 10px;
+    min-width: 0;
+  }
+
+  .area-schools__lead {
+    text-align: left;
+  }
+
+  .area-schools__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .area-school-card {
+    padding: 22px;
+  }
+
+  .area-school-card__title {
+    font-size: 1.38rem;
+  }
+
+  .classroom-slider {
+    box-shadow: 5px 5px 0 #e8f2ff;
+  }
+
+  .classroom-slider__slide img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .classroom-slider__slide figcaption {
+    font-size: 1rem;
+    padding: 14px 18px;
+  }
+
+  .classroom-slider .slider__prev,
+  .classroom-slider .slider__next {
+    height: 44px;
+    top: calc(50% - 24px);
+    width: 44px;
+  }
+
+  .classroom-slider .slider__prev {
+    left: 10px;
+  }
+
+  .classroom-slider .slider__next {
+    right: 10px;
+  }
+}
