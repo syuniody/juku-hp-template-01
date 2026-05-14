@@ -39,7 +39,22 @@ collections:
             summary: "{{fields.year}}年度｜{{fields.school}}｜{{fields.name}}"
             fields:
               - { label: "公開する", name: "published", widget: "boolean", default: true }
-              - { label: "年度", name: "year", widget: "number", value_type: "int", default: 2026 }
+              - label: "年度"
+                name: "year"
+                widget: "select"
+                options:
+                  - { label: "2030年度", value: 2030 }
+                  - { label: "2029年度", value: 2029 }
+                  - { label: "2028年度", value: 2028 }
+                  - { label: "2027年度", value: 2027 }
+                  - { label: "2026年度", value: 2026 }
+                  - { label: "2025年度", value: 2025 }
+                  - { label: "2024年度", value: 2024 }
+                  - { label: "2023年度", value: 2023 }
+                  - { label: "2022年度", value: 2022 }
+                  - { label: "2021年度", value: 2021 }
+                  - { label: "2020年度", value: 2020 }
+                default: 2026
               - label: "受験区分"
                 name: "category"
                 widget: "select"
@@ -50,4 +65,3 @@ collections:
               - { label: "氏名・イニシャル", name: "name", widget: "string", required: false }
               - { label: "タイトル", name: "title", widget: "string" }
               - { label: "本文", name: "body", widget: "markdown", hint: "強調したい文章は **本文** のように囲むと、ページ上で太字表示になります。" }
-              - { label: "表示順", name: "order", widget: "number", value_type: "int", required: false }

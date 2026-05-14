@@ -108,8 +108,7 @@
       const data = await response.json();
       const year = getPageYear();
       const stories = (data.stories || [])
-        .filter((story) => story.published !== false && Number(story.year) === year)
-        .sort((a, b) => Number(a.order || 999) - Number(b.order || 999));
+        .filter((story) => story.published !== false && Number(story.year) === year);
 
       if (!stories.length) {
         initFilter();

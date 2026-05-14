@@ -60,6 +60,11 @@
     .post-list { display: flex; flex-direction: column; }
     .post-item { display: grid; grid-template-columns: 1fr 120px 100px 80px; gap: 16px; align-items: center; padding: 14px 20px; background: var(--white); border-radius: var(--radius); cursor: pointer; transition: box-shadow 0.2s; margin-bottom: 6px; }
     .post-item:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .post-item--draggable { grid-template-columns: 32px 1fr 120px 100px 80px; cursor: grab; }
+    .post-item--draggable:active { cursor: grabbing; }
+    .post-item.is-dragging { opacity: .45; box-shadow: 0 8px 24px rgba(15, 23, 42, .14); }
+    .post-item__drag { color: var(--text-light); font-size: 1.125rem; line-height: 1; text-align: center; cursor: grab; user-select: none; }
+    .post-item__drag-hint { margin: -6px 0 14px; color: var(--text-light); font-size: .8125rem; }
     .post-item__title { font-weight: 500; font-size: 0.9375rem; }
     .post-item__category { display: inline-block; padding: 3px 10px; background: var(--primary-light); color: var(--primary); font-size: 0.75rem; font-weight: 500; border-radius: 20px; text-align: center; }
     .post-item__date { font-size: 0.8125rem; color: var(--text-light); }
@@ -318,20 +323,24 @@
             <span class="list-header__count">95件の体験記</span>
             <button class="btn-new" onclick="showSuccessEdit()">&#43; 体験記を追加</button>
           </div>
-          <div class="post-list">
-            <div class="post-item" onclick="showSuccessEdit()">
+          <p class="post-item__drag-hint">表示順は、左のハンドルをドラッグして入れ替えできます。</p>
+          <div class="post-list" id="successSortableList">
+            <div class="post-item post-item--draggable" draggable="true" onclick="showSuccessEdit()">
+              <span class="post-item__drag" aria-hidden="true">☰</span>
               <span class="post-item__title">「第一志望校に合格しました」</span>
               <span class="post-item__category">中学受験</span>
               <span class="post-item__date">2026年度</span>
               <span class="post-item__status post-item__status--published">公開中</span>
             </div>
-            <div class="post-item" onclick="showSuccessEdit()">
+            <div class="post-item post-item--draggable" draggable="true" onclick="showSuccessEdit()">
+              <span class="post-item__drag" aria-hidden="true">☰</span>
               <span class="post-item__title">「毎日の積み重ね」</span>
               <span class="post-item__category">高校受験</span>
               <span class="post-item__date">2025年度</span>
               <span class="post-item__status post-item__status--published">公開中</span>
             </div>
-            <div class="post-item" onclick="showSuccessEdit()">
+            <div class="post-item post-item--draggable" draggable="true" onclick="showSuccessEdit()">
+              <span class="post-item__drag" aria-hidden="true">☰</span>
               <span class="post-item__title">「先生方のおかげで」</span>
               <span class="post-item__category">高校受験</span>
               <span class="post-item__date">2024年度</span>
@@ -353,6 +362,10 @@
                 <label class="form-label">年度</label>
                 <select class="form-select">
                   <option selected>2026年度</option>
+                  <option>2027年度</option>
+                  <option>2028年度</option>
+                  <option>2029年度</option>
+                  <option>2030年度</option>
                   <option>2025年度</option>
                   <option>2024年度</option>
                   <option>2023年度</option>
@@ -367,10 +380,6 @@
                   <option selected>中学受験・中高一貫校</option>
                   <option>高校受験</option>
                 </select>
-              </div>
-              <div>
-                <label class="form-label">表示順</label>
-                <input type="number" class="form-select" value="1" style="width:110px;" />
               </div>
             </div>
             <div class="form-group">
@@ -510,6 +519,60 @@
       document.getElementById('successList').classList.remove('is-hidden');
       document.getElementById('successEdit').classList.remove('is-active');
     }
+
+    function initSuccessSortable() {
+      const list = document.getElementById('successSortableList');
+      if (!list) return;
+
+      let dragging = null;
+      let didDrag = false;
+
+      list.addEventListener('dragstart', (event) => {
+        dragging = event.target.closest('.post-item--draggable');
+        if (!dragging) return;
+        didDrag = false;
+        dragging.classList.add('is-dragging');
+        event.dataTransfer.effectAllowed = 'move';
+      });
+
+      list.addEventListener('dragend', () => {
+        if (dragging) dragging.classList.remove('is-dragging');
+        dragging = null;
+      });
+
+      list.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        const afterElement = getDragAfterElement(list, event.clientY);
+        if (!dragging) return;
+        didDrag = true;
+        if (afterElement == null) {
+          list.appendChild(dragging);
+        } else {
+          list.insertBefore(dragging, afterElement);
+        }
+      });
+
+      list.addEventListener('click', (event) => {
+        if (!didDrag) return;
+        event.preventDefault();
+        event.stopPropagation();
+        didDrag = false;
+      }, true);
+    }
+
+    function getDragAfterElement(container, y) {
+      const items = [...container.querySelectorAll('.post-item--draggable:not(.is-dragging)')];
+      return items.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+        if (offset < 0 && offset > closest.offset) {
+          return { offset, element: child };
+        }
+        return closest;
+      }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+    initSuccessSortable();
   </script>
 
 <!-- デモバッジ（左下固定） -->
