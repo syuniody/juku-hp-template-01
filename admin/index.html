@@ -65,6 +65,10 @@
     .post-item.is-dragging { opacity: .45; box-shadow: 0 8px 24px rgba(15, 23, 42, .14); }
     .post-item__drag { color: var(--text-light); font-size: 1.125rem; line-height: 1; text-align: center; cursor: grab; user-select: none; }
     .post-item__drag-hint { margin: -6px 0 14px; color: var(--text-light); font-size: .8125rem; }
+    .filter-row { display: flex; align-items: center; gap: 12px; margin: -4px 0 14px; padding: 14px 16px; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); }
+    .filter-row__label { color: var(--text-light); font-size: 0.8125rem; font-weight: 700; }
+    .filter-row__select { width: 180px; padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--white); color: var(--text); font: inherit; font-size: 0.875rem; }
+    .filter-row__note { color: var(--text-light); font-size: 0.8125rem; margin-left: auto; }
     .post-item__title { font-weight: 500; font-size: 0.9375rem; }
     .post-item__category { display: inline-block; padding: 3px 10px; background: var(--primary-light); color: var(--primary); font-size: 0.75rem; font-weight: 500; border-radius: 20px; text-align: center; }
     .post-item__date { font-size: 0.8125rem; color: var(--text-light); }
@@ -128,6 +132,10 @@
     @media (max-width: 768px) {
       .sidebar { display: none; }
       .post-item { grid-template-columns: 1fr; gap: 6px; }
+      .post-item--draggable { grid-template-columns: 28px 1fr; }
+      .filter-row { align-items: stretch; flex-direction: column; gap: 8px; }
+      .filter-row__select { width: 100%; }
+      .filter-row__note { margin-left: 0; }
       .content { padding: 20px 16px; }
       .score-grid { grid-template-columns: 1fr; }
     }
@@ -329,26 +337,44 @@
       <div class="panel" id="panel-success">
         <div class="list-view" id="successList">
           <div class="list-header">
-            <span class="list-header__count">95件の体験記</span>
+            <span class="list-header__count" id="successCount">95件の体験記</span>
             <button class="btn-new" onclick="showSuccessEdit()">&#43; 体験記を追加</button>
+          </div>
+          <div class="filter-row">
+            <span class="filter-row__label">年度で絞り込み</span>
+            <select class="filter-row__select" id="successYearFilter" aria-label="合格体験記の年度で絞り込み">
+              <option value="all">すべての年度</option>
+              <option value="2030">2030年度</option>
+              <option value="2029">2029年度</option>
+              <option value="2028">2028年度</option>
+              <option value="2027">2027年度</option>
+              <option value="2026">2026年度</option>
+              <option value="2025">2025年度</option>
+              <option value="2024">2024年度</option>
+              <option value="2023">2023年度</option>
+              <option value="2022">2022年度</option>
+              <option value="2021">2021年度</option>
+              <option value="2020">2020年度</option>
+            </select>
+            <span class="filter-row__note">選択した年度の体験記だけを表示します</span>
           </div>
           <p class="post-item__drag-hint">表示順は、左のハンドルをドラッグして入れ替えできます。</p>
           <div class="post-list" id="successSortableList">
-            <div class="post-item post-item--draggable" draggable="true" onclick="showSuccessEdit()">
+            <div class="post-item post-item--draggable" data-year="2026" draggable="true" onclick="showSuccessEdit()">
               <span class="post-item__drag" aria-hidden="true">☰</span>
               <span class="post-item__title">「第一志望校に合格しました」</span>
               <span class="post-item__category">中学受験</span>
               <span class="post-item__date">2026年度</span>
               <span class="post-item__status post-item__status--published">公開中</span>
             </div>
-            <div class="post-item post-item--draggable" draggable="true" onclick="showSuccessEdit()">
+            <div class="post-item post-item--draggable" data-year="2025" draggable="true" onclick="showSuccessEdit()">
               <span class="post-item__drag" aria-hidden="true">☰</span>
               <span class="post-item__title">「毎日の積み重ね」</span>
               <span class="post-item__category">高校受験</span>
               <span class="post-item__date">2025年度</span>
               <span class="post-item__status post-item__status--published">公開中</span>
             </div>
-            <div class="post-item post-item--draggable" draggable="true" onclick="showSuccessEdit()">
+            <div class="post-item post-item--draggable" data-year="2024" draggable="true" onclick="showSuccessEdit()">
               <span class="post-item__drag" aria-hidden="true">☰</span>
               <span class="post-item__title">「先生方のおかげで」</span>
               <span class="post-item__category">高校受験</span>
@@ -529,6 +555,34 @@
       document.getElementById('successEdit').classList.remove('is-active');
     }
 
+    function initSuccessYearFilter() {
+      const filter = document.getElementById('successYearFilter');
+      const list = document.getElementById('successSortableList');
+      const count = document.getElementById('successCount');
+      if (!filter || !list || !count) return;
+
+      const items = [...list.querySelectorAll('.post-item--draggable')];
+      const totalText = '95件の体験記';
+
+      const apply = () => {
+        const year = filter.value;
+        let visible = 0;
+
+        items.forEach((item) => {
+          const show = year === 'all' || item.dataset.year === year;
+          item.style.display = show ? '' : 'none';
+          if (show) visible += 1;
+        });
+
+        count.textContent = year === 'all'
+          ? totalText
+          : `${year}年度：${visible}件の体験記`;
+      };
+
+      filter.addEventListener('change', apply);
+      apply();
+    }
+
     function initSuccessSortable() {
       const list = document.getElementById('successSortableList');
       if (!list) return;
@@ -581,6 +635,7 @@
       }, { offset: Number.NEGATIVE_INFINITY }).element;
     }
 
+    initSuccessYearFilter();
     initSuccessSortable();
   </script>
 
