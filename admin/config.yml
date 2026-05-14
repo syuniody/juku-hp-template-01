@@ -25,6 +25,35 @@ collections:
       - { label: "概要", name: "description", widget: "text", required: false }
       - { label: "本文", name: "body", widget: "markdown" }
 
+  - name: "results"
+    label: "合格実績"
+    files:
+      - label: "合格実績"
+        name: "results"
+        file: "data/results.json"
+        format: "json"
+        fields:
+          - { label: "リード文", name: "lead", widget: "text" }
+          - label: "私立中"
+            name: "private_junior"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "学校名", name: "name", widget: "string" }
+          - label: "国公立高"
+            name: "public_high"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "学校名", name: "name", widget: "string" }
+          - label: "私立高"
+            name: "private_high"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "学校名", name: "name", widget: "string" }
+          - { label: "補足", name: "note", widget: "text", required: false }
+
   - name: "success"
     label: "合格体験記"
     files:
