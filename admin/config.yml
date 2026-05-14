@@ -24,3 +24,30 @@ collections:
       - { label: "アイキャッチ画像", name: "thumbnail", widget: "image", required: false }
       - { label: "概要", name: "description", widget: "text", required: false }
       - { label: "本文", name: "body", widget: "markdown" }
+
+  - name: "success"
+    label: "合格体験記"
+    files:
+      - label: "合格体験記一覧"
+        name: "stories"
+        file: "success/stories.json"
+        format: "json"
+        fields:
+          - label: "体験記"
+            name: "stories"
+            widget: "list"
+            summary: "{{fields.year}}年度｜{{fields.school}}｜{{fields.name}}"
+            fields:
+              - { label: "公開する", name: "published", widget: "boolean", default: true }
+              - { label: "年度", name: "year", widget: "number", value_type: "int", default: 2026 }
+              - label: "受験区分"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "中学受験・中高一貫校", value: "junior" }
+                  - { label: "高校受験", value: "high" }
+              - { label: "合格校", name: "school", widget: "string" }
+              - { label: "氏名・イニシャル", name: "name", widget: "string", required: false }
+              - { label: "タイトル", name: "title", widget: "string" }
+              - { label: "本文", name: "body", widget: "markdown", hint: "強調したい文章は **本文** のように囲むと、ページ上で太字表示になります。" }
+              - { label: "表示順", name: "order", widget: "number", value_type: "int", required: false }
