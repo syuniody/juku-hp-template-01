@@ -3,6 +3,7 @@
     junior: '中学受験・中高一貫校',
     high: '高校受験',
   };
+  const CMS_DATA_URL = 'https://raw.githubusercontent.com/syuniody/juku-hp-template-01/main/success/stories.json';
 
   const escapeHtml = (value = '') => String(value)
     .replace(/&/g, '&amp;')
@@ -94,8 +95,16 @@
     if (!grid) return;
 
     try {
-      const response = await fetch('stories.json', { cache: 'no-store' });
-      if (!response.ok) throw new Error('stories.json not found');
+      const isLocalPreview = ['localhost', '127.0.0.1', ''].includes(location.hostname);
+      const sources = isLocalPreview ? ['stories.json', CMS_DATA_URL] : [CMS_DATA_URL, 'stories.json'];
+      let response;
+
+      for (const source of sources) {
+        response = await fetch(source, { cache: 'no-store' }).catch(() => null);
+        if (response?.ok) break;
+      }
+
+      if (!response?.ok) throw new Error('stories data not found');
       const data = await response.json();
       const year = getPageYear();
       const stories = (data.stories || [])
